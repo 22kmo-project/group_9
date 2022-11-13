@@ -4,8 +4,8 @@
 
 int main(int argc, char *argv[])
 {
-//artemii branch
 
+//Artemii hello
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
