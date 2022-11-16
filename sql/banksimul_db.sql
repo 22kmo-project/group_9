@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `banksimul_db` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `banksimul_db`;
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: banksimul_db
@@ -25,18 +23,17 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `idAccount` int NOT NULL AUTO_INCREMENT,
+  `id_account` int NOT NULL AUTO_INCREMENT,
   `balance` double DEFAULT NULL,
-  `credit_limit` int DEFAULT NULL,
-  `property_id` int DEFAULT NULL,
-  `Accountcol` varchar(45) DEFAULT NULL,
-  `card_properties_id` int DEFAULT NULL,
-  PRIMARY KEY (`idAccount`),
-  UNIQUE KEY `idAccount_UNIQUE` (`idAccount`),
-  KEY `idCard_properties_idx` (`card_properties_id`),
-  KEY `idProperty_idx` (`property_id`),
-  CONSTRAINT `Card_property` FOREIGN KEY (`card_properties_id`) REFERENCES `card_property` (`idCard_property`),
-  CONSTRAINT `Property` FOREIGN KEY (`property_id`) REFERENCES `owner_property` (`idProperty`)
+  `credit_limit` double DEFAULT NULL,
+  `card_property_id` int DEFAULT NULL,
+  `owner_property_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_account`),
+  UNIQUE KEY `idAccount_UNIQUE` (`id_account`),
+  KEY `Card_property_idx` (`card_property_id`),
+  KEY `Owner_property_idx` (`owner_property_id`),
+  CONSTRAINT `card_property` FOREIGN KEY (`card_property_id`) REFERENCES `card_property` (`id_card_property`),
+  CONSTRAINT `owner_property` FOREIGN KEY (`owner_property_id`) REFERENCES `owner_property` (`id_owner_property`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,9 +54,10 @@ DROP TABLE IF EXISTS `card`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `card` (
-  `idCard` int NOT NULL AUTO_INCREMENT,
+  `id_card` int NOT NULL AUTO_INCREMENT,
   `pin` varchar(255) DEFAULT NULL,
-  UNIQUE KEY `idCard_UNIQUE` (`idCard`)
+  PRIMARY KEY (`id_card`),
+  UNIQUE KEY `idCard_UNIQUE` (`id_card`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -80,13 +78,13 @@ DROP TABLE IF EXISTS `card_property`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `card_property` (
-  `idCard_property` int NOT NULL,
+  `id_card_property` int NOT NULL,
   `card_type` varchar(6) DEFAULT NULL,
   `card_id` int DEFAULT NULL,
-  PRIMARY KEY (`idCard_property`),
-  UNIQUE KEY `idCard_properties_UNIQUE` (`idCard_property`),
+  PRIMARY KEY (`id_card_property`),
+  UNIQUE KEY `idCard_property_UNIQUE` (`id_card_property`),
   KEY `idCard_idx` (`card_id`),
-  CONSTRAINT `Card` FOREIGN KEY (`card_id`) REFERENCES `card` (`idCard`)
+  CONSTRAINT `card` FOREIGN KEY (`card_id`) REFERENCES `card` (`id_card`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,15 +105,15 @@ DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event` (
-  `idEvent` int NOT NULL,
+  `id_event` int NOT NULL AUTO_INCREMENT,
   `account_id` int DEFAULT NULL,
-  `card_id` int DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `action` varchar(45) DEFAULT NULL,
-  `sum` int DEFAULT NULL,
-  PRIMARY KEY (`idEvent`),
+  `sum` double DEFAULT NULL,
+  PRIMARY KEY (`id_event`),
+  UNIQUE KEY `idEvent_UNIQUE` (`id_event`),
   KEY `idAccount_idx` (`account_id`),
-  CONSTRAINT `Account` FOREIGN KEY (`account_id`) REFERENCES `account` (`idAccount`)
+  CONSTRAINT `account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -136,13 +134,13 @@ DROP TABLE IF EXISTS `owner`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `owner` (
-  `idOwner` int NOT NULL AUTO_INCREMENT,
+  `id_owner` int NOT NULL AUTO_INCREMENT,
   `fname` varchar(45) DEFAULT NULL,
   `lname` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `phone` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`idOwner`),
-  UNIQUE KEY `idOwner_UNIQUE` (`idOwner`)
+  PRIMARY KEY (`id_owner`),
+  UNIQUE KEY `idOwner_UNIQUE` (`id_owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,12 +161,13 @@ DROP TABLE IF EXISTS `owner_property`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `owner_property` (
-  `idProperty` int NOT NULL AUTO_INCREMENT,
-  `Owner_type` int DEFAULT NULL,
-  `Owner_id` int DEFAULT NULL,
-  PRIMARY KEY (`idProperty`),
-  KEY `idOwner_idx` (`Owner_id`),
-  CONSTRAINT `Owner` FOREIGN KEY (`Owner_id`) REFERENCES `owner` (`idOwner`)
+  `id_owner_property` int NOT NULL,
+  `owner_type` char(5) DEFAULT NULL,
+  `owner_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_owner_property`),
+  UNIQUE KEY `idOwnver_property_UNIQUE` (`id_owner_property`),
+  KEY `owner_idx` (`owner_id`),
+  CONSTRAINT `owner` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id_owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -190,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-15 20:03:58
+-- Dump completed on 2022-11-16 18:29:20
