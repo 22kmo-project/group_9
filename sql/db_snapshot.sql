@@ -26,15 +26,9 @@ CREATE TABLE `account` (
   `id_account` int NOT NULL AUTO_INCREMENT,
   `balance` double DEFAULT NULL,
   `credit_limit` double DEFAULT NULL,
-  `card_property_id` int DEFAULT NULL,
-  `owner_property_id` int DEFAULT NULL,
   PRIMARY KEY (`id_account`),
-  UNIQUE KEY `idAccount_UNIQUE` (`id_account`),
-  KEY `Card_property_idx` (`card_property_id`),
-  KEY `Owner_property_idx` (`owner_property_id`),
-  CONSTRAINT `card_property` FOREIGN KEY (`card_property_id`) REFERENCES `card_property` (`id_card_property`),
-  CONSTRAINT `owner_property` FOREIGN KEY (`owner_property_id`) REFERENCES `owner_property` (`id_owner_property`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `idAccount_UNIQUE` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,2500,3000),(2,2500,0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +53,7 @@ CREATE TABLE `card` (
   `pin` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_card`),
   UNIQUE KEY `idCard_UNIQUE` (`id_card`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,14 +73,17 @@ DROP TABLE IF EXISTS `card_property`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `card_property` (
-  `id_card_property` int NOT NULL,
+  `id_card_property` int NOT NULL AUTO_INCREMENT,
   `card_type` varchar(6) DEFAULT NULL,
   `card_id` int DEFAULT NULL,
+  `account_id` int DEFAULT NULL,
   PRIMARY KEY (`id_card_property`),
   UNIQUE KEY `idCard_property_UNIQUE` (`id_card_property`),
   KEY `idCard_idx` (`card_id`),
-  CONSTRAINT `card` FOREIGN KEY (`card_id`) REFERENCES `card` (`id_card`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `account_idx` (`account_id`),
+  CONSTRAINT `card` FOREIGN KEY (`card_id`) REFERENCES `card` (`id_card`),
+  CONSTRAINT `card_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +92,7 @@ CREATE TABLE `card_property` (
 
 LOCK TABLES `card_property` WRITE;
 /*!40000 ALTER TABLE `card_property` DISABLE KEYS */;
+INSERT INTO `card_property` VALUES (1,'credit',1,1),(6,'credit',2,1),(7,'credit',3,2);
 /*!40000 ALTER TABLE `card_property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +140,7 @@ CREATE TABLE `owner` (
   `phone` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_owner`),
   UNIQUE KEY `idOwner_UNIQUE` (`id_owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +149,7 @@ CREATE TABLE `owner` (
 
 LOCK TABLES `owner` WRITE;
 /*!40000 ALTER TABLE `owner` DISABLE KEYS */;
+INSERT INTO `owner` VALUES (1,'Pekka','Merivalo','Esimerkkitie 2','+35844231512345'),(2,'Liisa','Merivalo','Esimerkkitie 2','+35844231512346'),(3,'Juha','Wayne','Jokutie 3','+35844231512sd5');
 /*!40000 ALTER TABLE `owner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,14 +161,17 @@ DROP TABLE IF EXISTS `owner_property`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `owner_property` (
-  `id_owner_property` int NOT NULL,
+  `id_owner_property` int NOT NULL AUTO_INCREMENT,
   `owner_type` char(5) DEFAULT NULL,
   `owner_id` int DEFAULT NULL,
+  `account_id` int DEFAULT NULL,
   PRIMARY KEY (`id_owner_property`),
   UNIQUE KEY `idOwnver_property_UNIQUE` (`id_owner_property`),
   KEY `owner_idx` (`owner_id`),
-  CONSTRAINT `owner` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id_owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `account_idx` (`account_id`),
+  CONSTRAINT `owner` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id_owner`),
+  CONSTRAINT `owner_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,6 +180,7 @@ CREATE TABLE `owner_property` (
 
 LOCK TABLES `owner_property` WRITE;
 /*!40000 ALTER TABLE `owner_property` DISABLE KEYS */;
+INSERT INTO `owner_property` VALUES (1,'owner',1,1),(2,'user',2,1),(3,'owner',3,2);
 /*!40000 ALTER TABLE `owner_property` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -189,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-16 18:29:20
+-- Dump completed on 2022-11-16 19:58:20
