@@ -2,10 +2,27 @@ const db = require("../database");
 
 const account = {
   getById: function (id, callback) {
-    return db.query("select * from account where id_account=?", [id], callback);
+    db.query(
+      "SELECT * from account where id_account=?",
+      [id],
+      function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        callback(result);
+      }
+    );
+    //return db.query("select * from account where id_account=?", [id], callback);
   },
   getAll: function (callback) {
-    return db.query("select * from account", callback);
+    //Select all customers and return the result object:y
+    db.query("SELECT * FROM account", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      console.log("GetAll");
+      callback(result);
+    });
+
+    //return db.query("SELECT * FROM account", callback);
   },
   add: function (account, callback) {
     return db.query(
