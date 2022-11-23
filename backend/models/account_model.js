@@ -2,7 +2,7 @@ const db = require("../database");
 
 const account = {
   getById: function (id, callback) {
-    db.query(
+    /*db.query(
       "SELECT * from account where id_account=?",
       [id],
       function (err, result, fields) {
@@ -10,12 +10,15 @@ const account = {
         console.log(result);
         callback(result);
       }
-    );
-    //return db.query("select * from account where id_account=?", [id], callback);
+    );*/
+
+    return db.query("select * from account where id_account=?", [id], callback);
   },
   getAll: function (callback) {
     //Select all customers and return the result object:y
     db.query("SELECT * FROM account", function (err, result, fields) {
+      console.log("[mysql error]", err);
+
       if (err) throw err;
       console.log(result);
       console.log("GetAll");
