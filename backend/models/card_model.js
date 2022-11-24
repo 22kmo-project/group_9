@@ -11,7 +11,22 @@ const card = {
   },
   add: function (card, callback) {
     bcrypt.hash(card.pin, saltRounds, function (err, hash) {
-      return db.query("insert into card ( pin) values(?)", [hash], callback);
+      console.log(
+        hash +
+          "\n" +
+          card.owner_id +
+          "\n" +
+          card.account_id +
+          "\n" +
+          card.card_type
+      );
+
+      //return db.query("insert into card ( pin) values(?)", [hash], callback);
+      return db.query(
+        "call create_card(?,?,?,?)",
+        [hash, card.owner_id, card.account_id, card.card_type],
+        callback
+      );
     });
   },
   delete: function (id, callback) {

@@ -51,9 +51,12 @@ DROP TABLE IF EXISTS `card`;
 CREATE TABLE `card` (
   `id_card` int NOT NULL AUTO_INCREMENT,
   `pin` varchar(255) DEFAULT NULL,
+  `owner_id` int DEFAULT NULL,
   PRIMARY KEY (`id_card`),
-  UNIQUE KEY `idCard_UNIQUE` (`id_card`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `idCard_UNIQUE` (`id_card`),
+  KEY `card_owner_id_idx` (`owner_id`),
+  CONSTRAINT `card_owner_id` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id_owner`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +65,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
+INSERT INTO `card` VALUES (1,'1234',1),(2,'1234',1),(3,'1234',1),(4,'1234',1),(5,'1234',1),(6,'1234',1),(7,'1234',1),(8,'1234',1),(9,'1234',1),(10,'1234',1),(11,'1234',1),(12,'1234',1),(13,'1234',1),(14,'1234',1),(15,'1234',1),(16,'1234',1),(17,'1234',1),(18,'1234',1),(19,'1234',1),(20,'$2a$10$aTEoeqU6tKZQNTUpJgUJ5uC8p.ySEjqrypkKl.vKgmPVjb.b8SF.2',1),(21,'$2a$10$4B.SHUypAl4t1RUa9qvIkejPUomq2/TRLyRIAzwfs38Rk6t.32moS',2);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,10 +84,10 @@ CREATE TABLE `card_property` (
   PRIMARY KEY (`id_card_property`),
   UNIQUE KEY `idCard_property_UNIQUE` (`id_card_property`),
   KEY `idCard_idx` (`card_id`),
-  KEY `account_idx` (`account_id`),
+  KEY `card_account_idx` (`account_id`),
   CONSTRAINT `card` FOREIGN KEY (`card_id`) REFERENCES `card` (`id_card`),
   CONSTRAINT `card_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +96,7 @@ CREATE TABLE `card_property` (
 
 LOCK TABLES `card_property` WRITE;
 /*!40000 ALTER TABLE `card_property` DISABLE KEYS */;
-INSERT INTO `card_property` VALUES (1,'credit',1,1),(6,'credit',2,1),(7,'credit',3,2);
+INSERT INTO `card_property` VALUES (1,'credit',1,1),(2,'credit',2,1),(3,'credit',3,1),(4,'credit',4,1),(5,'credit',5,1),(6,'credit',6,1),(7,'credit',7,1),(8,'credit',8,1),(9,'credit',9,1),(10,'credit',10,1),(11,'credit',11,1),(12,'credit',12,1),(13,'credit',13,1),(14,'credit',14,1),(15,'credit',15,1),(16,'credit',16,1),(17,'credit',17,1),(18,'credit',18,1),(19,'credit',19,1),(20,'debit',20,1),(21,'debit',21,1);
 /*!40000 ALTER TABLE `card_property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,10 +172,10 @@ CREATE TABLE `owner_property` (
   PRIMARY KEY (`id_owner_property`),
   UNIQUE KEY `idOwnver_property_UNIQUE` (`id_owner_property`),
   KEY `owner_idx` (`owner_id`),
-  KEY `account_idx` (`account_id`),
+  KEY `owner_account_idx` (`account_id`),
   CONSTRAINT `owner` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id_owner`),
   CONSTRAINT `owner_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-16 19:58:20
+-- Dump completed on 2022-11-24 20:48:12
