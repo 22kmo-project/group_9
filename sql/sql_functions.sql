@@ -13,17 +13,11 @@ account_id);
   END //
 DELIMITER ;
 
-call create_card("1234",1,1,"credit");
-
-select * from card;
-
-call get_card_info(21);
-
 #get_card_info
 DELIMITER //
 CREATE PROCEDURE get_card_info(IN _card_id INT)
   BEGIN
-select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_owner
+select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_ownerget_card_info
  from
  card
  JOIN card_property
@@ -48,5 +42,22 @@ select id_card, card_property.card_type, owner.fname, owner.lname, account.balan
   ON owner.id_owner=card.owner_id
    JOIN account
   ON card_property.account_id=account.id_account;
+  END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE get_card_by_account(IN _account_id int)
+  BEGIN
+select id_account, card_property.id_card_property, card_property.card_type, card_property.card_id, card.owner_id, owner.fname, owner.lname
+ from
+ account
+ JOIN card_property
+  ON card_property.account_id=id_account
+   JOIN card
+  ON card_property.card_id=card.id_card
+    JOIN owner
+  ON card.owner_id=owner.id_owner
+  where id_account=_account_id;
   END //
 DELIMITER ;
