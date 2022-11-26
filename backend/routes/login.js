@@ -23,7 +23,9 @@ router.post("/", function (request, response) {
           bcrypt.compare(pin, dbResult[0].pin, function (err, compareResult) {
             if (compareResult) {
               console.log("succes");
-              const token = generateAccessToken({ id_card: id_card });
+              const token = generateAccessToken({
+                username: request.body.id_card,
+              });
               response.send(token);
             } else {
               console.log("wrong pin");
@@ -42,9 +44,11 @@ router.post("/", function (request, response) {
   }
 });
 
-function generateAccessToken(id_card) {
+function generateAccessToken(username) {
   dotenv.config();
-  return jwt.sign(id_card, process.env.MY_TOKEN, { expiresIn: "1800s" });
+  return jwt.sign(username, process.env.MY_TOKEN, {
+    expiresIn: "1800s",
+  });
 }
 
 module.exports = router;

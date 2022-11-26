@@ -29,7 +29,6 @@ app.use("/card", cardRouter);
 
 app.use(authenticateToken);
 
-app.use("/card", cardRouter);
 app.use("/account", accountRouter);
 
 module.exports = app;

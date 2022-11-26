@@ -1,5 +1,4 @@
-CREATE USER 'group_9'@'localhost'
+CREATE card 'group_9'@'localhost'
  IDENTIFIED WITH mysql_native_password BY 'netpass';
  
-GRANT ALL ON banksimul_db TO 'group_9'@'localhost';
-FLUSH PRIVILEGES;
+GRANT ALL on banksimul_db.* to 'group_9'@'localhost';

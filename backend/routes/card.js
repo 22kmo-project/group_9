@@ -8,7 +8,7 @@ router.get("/:id?", function (request, response) {
       if (err) {
         response.json(err);
       } else {
-        response.json(dbResult[0]);
+        response.json(dbResult);
       }
     });
   } else {
@@ -18,6 +18,7 @@ router.get("/:id?", function (request, response) {
       } else {
         response.json(dbResult);
       }
+      console.log(dbResult[0].card_type);
     });
   }
 });
