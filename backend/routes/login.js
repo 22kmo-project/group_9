@@ -6,11 +6,11 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
 router.post("/", function (request, response) {
-  if (request.body.id_card && request.body.pinword) {
+  if (request.body.id_card && request.body.pin) {
     const id_card = request.body.id_card;
     console.log("id_card " + id_card);
 
-    const pin = request.body.pinword;
+    const pin = request.body.pin;
     console.log("pin " + id_card);
 
     login.checkPassword(id_card, function (dbError, dbResult) {
@@ -23,10 +23,12 @@ router.post("/", function (request, response) {
           bcrypt.compare(pin, dbResult[0].pin, function (err, compareResult) {
             if (compareResult) {
               console.log("succes");
-              const token = generateAccessToken({ id_card: id_card });
+              const token = generateAccessToken({
+                username: request.body.id_card,
+              });
               response.send(token);
             } else {
-              console.log("wrong pinword");
+              console.log("wrong pin");
               response.send(false);
             }
           });
@@ -37,14 +39,16 @@ router.post("/", function (request, response) {
       }
     });
   } else {
-    console.log("id_card or pinword missing");
+    console.log("id_card or pin missing");
     response.send(false);
   }
 });
 
-function generateAccessToken(id_card) {
+function generateAccessToken(username) {
   dotenv.config();
-  return jwt.sign(id_card, process.env.MY_TOKEN, { expiresIn: "1800s" });
+  return jwt.sign(username, process.env.MY_TOKEN, {
+    expiresIn: "1800s",
+  });
 }
 
 module.exports = router;
