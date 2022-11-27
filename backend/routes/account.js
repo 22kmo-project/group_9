@@ -7,8 +7,8 @@ router.get("/", function (request, response) {
     if (err) {
       response.json(err);
     } else {
-      console.log(dbResult.rows);
-      response.json(dbResult.rows);
+      console.log(dbResult);
+      response.json(dbResult);
     }
   });
 });
@@ -18,7 +18,7 @@ router.get("/:id?", function (request, response) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult.rows);
+      response.json(dbResult);
     }
   });
 });
