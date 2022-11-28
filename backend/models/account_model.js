@@ -12,7 +12,7 @@ const account = {
       }
     );*/
 
-    return db.query("select * from account where id_account=?", [id], callback);
+    return db.query("call get_account_info(?)", [id], callback);
   },
   getAll: function (callback) {
     //Select all customers and return the result object:y
