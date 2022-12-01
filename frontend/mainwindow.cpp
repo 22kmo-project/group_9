@@ -11,19 +11,21 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete objectUserHomePage;
+    objectUserHomePage=nullptr;
 }
 
 
 void MainWindow::on_loginB_clicked()
 {
     id_card =ui->cardNumEnter->text();
-    password =ui->pinEnter->text();
+    pin =ui->pinEnter->text();
 
     QJsonObject jsonObj;
     jsonObj.insert("id_card",id_card);
-    jsonObj.insert("pin",password);
+    jsonObj.insert("pin",pin);
 
-    QString site_url="http://localhost:3000/login";
+    QString site_url = MyUrl::getBaseUrl()+"/login";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
@@ -47,18 +49,29 @@ void MainWindow::loginSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
     qDebug()<<response_data;
+    int test =QString::compare(response_data,"false");
+    qDebug()<<test;
 
+    if(response_data.length()==0){
+        ui->errorTxt->setText("host not working");
 
-    /*
-    if(card_num != "1234"){
-        ui->cardNumEnter->setText("");
-        ui->pinEnter->setText("");
+    }
+    else{
+        if(QString::compare(response_data,"-4078")==0){
+            ui->errorTxt->setText("problem in database");
 
-        ui->errorTxt->setText("card num or pin is wrong!");
-    }else{
-        objectUserHomePage=new userHomePage(card_num);
-        objectUserHomePage->show();
-    }*/
+        }else{
+            if(test == 0){
+                ui->cardNumEnter->clear();
+                ui->pinEnter->clear();
+                ui->errorTxt->setText("card num or pin is wrong!");
+            }else{
+                objectUserHomePage=new userHomePage(id_card);
+                objectUserHomePage->setWebToken(response_data);
+                objectUserHomePage->show();
+            }
+        }
+    }
 
 }
 

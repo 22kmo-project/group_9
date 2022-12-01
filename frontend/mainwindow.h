@@ -6,7 +6,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
-
+#include "myurl.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +34,6 @@ private:
     QNetworkReply *reply;
     QByteArray response_data;
     QString id_card;
-    QString password;
+    QString pin;
 };
 #endif // MAINWINDOW_H

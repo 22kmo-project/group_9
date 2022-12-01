@@ -16,7 +16,7 @@ const account = {
   },
   getAll: function (callback) {
     //Select all customers and return the result object:y
-    db.query("SELECT * FROM account", function (err, result, fields) {
+    db.query("call select_from_account(?)", function (err, result, fields) {
       console.log("[mysql error]", err);
 
       if (err) throw err;
