@@ -110,3 +110,78 @@ select * from owner;
 
 select *from card;
 select *from card_property;
+
+
+#get_account_owner_info
+DELIMITER //
+CREATE PROCEDURE get_account_owner_info(IN _id_account INT)
+  BEGIN
+select owner_property.owner_type, owner.fname, owner.lname
+ from
+ account
+ JOIN owner_property
+  ON account.id_account=owner_property.account_id
+   JOIN owner
+  ON owner.id_owner=owner_property.owner_id
+     where id_account = _id_account;
+  END //
+DELIMITER ;
+
+#get_account_info
+DELIMITER //
+CREATE PROCEDURE get_account_info(IN _id_account INT)
+  BEGIN
+select owner_property.owner_type, owner.fname, owner.lname, owner.address, owner.phone, account.balance, account.credit_limit
+ from
+ account
+ JOIN owner_property
+  ON account.id_account=owner_property.account_id
+   JOIN owner
+  ON owner.id_owner=owner_property.owner_id
+     where id_account = _id_account;
+  END //
+DELIMITER ;
+
+#get_owner_accounts_info
+DELIMITER //
+CREATE PROCEDURE get_owner_accounts_info(IN _id_owner INT)
+  BEGIN
+select owner_property.owner_type, account.id_account, account.balance, account.credit_limit
+ from
+ account
+ JOIN owner_property
+  ON account.id_account=owner_property.account_id
+   JOIN owner
+  ON owner.id_owner=owner_property.owner_id
+     where id_account = 2;
+  END //
+DELIMITER ;
+get_owner_accounts_info
+
+call create_owner("Old", "boy", "Nigga Gaa","265564561")
+#create_owner
+DELIMITER //
+CREATE PROCEDURE create_owner(IN _fname varchar(45), IN _lname varchar(45),IN _address varchar(45),IN _phone varchar(45))
+  BEGIN
+INSERT INTO owner (fname, lname, phone, address)
+VALUES (_fname,_lname,_phone,_address);
+  END //
+DELIMITER ;
+
+#create_account
+DELIMITER //
+CREATE PROCEDURE create_account(IN _id_owner INT, IN _credit_limit DOUBLE, IN _owner_type varchar(5))
+  BEGIN
+INSERT INTO account (credit_limit)
+VALUES (666);
+insert into owner_property (account_id, owner_id, owner_type)
+values(
+/*(select newest account with  highest id),*/
+(SELECT MAX(id_account)
+FROM account),
+_id_owner, _owner_type);
+  END //
+DELIMITER ;
+
+
+

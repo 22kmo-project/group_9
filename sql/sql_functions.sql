@@ -62,6 +62,8 @@ select id_account, card_property.id_card_property, card_property.card_type, card
   END //
 DELIMITER ;
 
+
+#Owner
 #get_account_owner_info
 DELIMITER //
 CREATE PROCEDURE get_account_owner_info(IN _id_account INT)
@@ -76,7 +78,6 @@ select owner_property.owner_type, owner.fname, owner.lname
      where id_account = _id_account;
   END //
 DELIMITER ;
-
 #get_account_info
 DELIMITER //
 CREATE PROCEDURE get_account_info(IN _id_account INT)
@@ -107,17 +108,30 @@ select owner_property.owner_type, account.id_account, account.balance, account.c
   END //
 DELIMITER ;
 
-#create_account
+
+#create_owner
 DELIMITER //
-CREATE PROCEDURE create_account(IN _id_owner INT, IN _credit_limit DOUBLE, IN _owner_type varchar(5))
+CREATE PROCEDURE create_owner(IN _fname varchar(45), IN _lname varchar(45),IN _address varchar(45),IN _phone varchar(45))
   BEGIN
-INSERT INTO account (credit_limit)
-VALUES (666);
-insert into owner_property (account_id, owner_id, owner_type)
-values(
-/*(select newest account with  highest id),*/
-(SELECT MAX(id_account)
-FROM account),
-_id_owner, _owner_type);
+INSERT INTO owner (fname, lname, phone, address)
+VALUES (_fname,_lname,_phone,_address);
   END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE create_account( IN _credit_limit DOUBLE, IN _balance DOUBLE)
+  BEGIN
+INSERT INTO account (credit_limit, balance)
+VALUES (_credit_limit, _balance);
+  END //
+DELIMITER ;
+
+#create_account
+DELIMITER //
+CREATE PROCEDURE create_owner_property(IN _id_owner INT, IN _account_id INT, IN _owner_type varchar(5))
+  BEGIN
+insert into owner_property (account_id, owner_id, owner_type)
+values(_account_id, _id_owner, _owner_type);
+  END //
+DELIMITER ;
+

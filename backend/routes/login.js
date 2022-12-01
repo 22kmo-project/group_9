@@ -15,7 +15,9 @@ router.post("/", function (request, response) {
 
     login.checkPassword(id_card, function (dbError, dbResult) {
       if (dbError) {
-        response.json(dbError);
+        response.json(dbError.errno);
+        console.log("id_card does not exists");
+        response.send(false);
       } else {
         console.log(dbResult[0].pin + " " + pin);
 
