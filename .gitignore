@@ -1,6 +1,5 @@
 /build-frontend-Desktop_x86_windows_msvc2022_pe_64bit-Debug/
-/build-frontend-Desktop_Qt_6_4_0_MSVC2019_64bit-Debug/
 backend/node_modules/
 frontend/build/
 frontend/*.user
-
+/build-frontend-Desktop_Qt_6_4_0_MSVC2019_64bit-Debug/
