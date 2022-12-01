@@ -18,7 +18,7 @@ router.get("/:id?", function (request, response) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult.rows);
+      response.json(dbResult);
     }
   });
 });
