@@ -17,7 +17,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE get_card_info(IN _card_id INT)
   BEGIN
-select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_ownerget_card_info
+select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_owner
  from
  card
  JOIN card_property
