@@ -135,3 +135,12 @@ values(_account_id, _id_owner, _owner_type);
   END //
 DELIMITER ;
 
+#create_event
+DELIMITER //
+CREATE PROCEDURE create_event(IN withdraw varchar(2), IN view_transactions varchar(2), IN show_balance varchar(2))
+  BEGIN
+insert into event (withdraw, view_transactions, show_balance)
+values (withdraw, view_transactions, show_balance);
+  END //
+DELIMITER ;
+
