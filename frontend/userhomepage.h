@@ -21,6 +21,8 @@ public:
     ~userHomePage();
 
     void setWebToken(const QByteArray &newWebToken);
+    const QString &getWebToken() const;
+
 
 private slots:
     void on_lableIdOwner_windowIconChanged(const QIcon &icon);

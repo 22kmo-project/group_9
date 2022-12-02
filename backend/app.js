@@ -25,7 +25,7 @@ const cardRouter = require("./routes/card");
 app.use("/login", loginRouter); //login is not protected
 
 //commint when you have all ready created card
-//app.use(authenticateToken);
+app.use(authenticateToken);
 
 app.use("/card", cardRouter);
 app.use("/account", accountRouter);
