@@ -21,7 +21,7 @@ public:
     ~userHomePage();
 
     void setWebToken(const QByteArray &newWebToken);
-    const QString &getWebToken() const;
+    const QByteArray &getWebToken() const;
 
 
 private slots:

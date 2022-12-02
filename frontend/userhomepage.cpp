@@ -24,6 +24,8 @@ void userHomePage::on_lableIdOwner_windowIconChanged(const QIcon &icon)
 void userHomePage::setWebToken(const QByteArray &newWebToken)
 {
     webToken = newWebToken;
+    qDebug()<<"Set Token " + webToken;
+
 }
 
 
