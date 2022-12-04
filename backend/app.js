@@ -21,6 +21,7 @@ app.use(cors());
 const loginRouter = require("./routes/login");
 const accountRouter = require("./routes/account");
 const cardRouter = require("./routes/card");
+const balanceRouter = require("./routes/balance");
 
 app.use("/login", loginRouter); //login is not protected
 
@@ -29,6 +30,7 @@ app.use("/login", loginRouter); //login is not protected
 
 app.use("/card", cardRouter);
 app.use("/account", accountRouter);
+app.use("/balance", balanceRouter);
 
 module.exports = app;
 
