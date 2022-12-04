@@ -21,6 +21,7 @@ app.use(cors());
 const loginRouter = require("./routes/login");
 const accountRouter = require("./routes/account");
 const cardRouter = require("./routes/card");
+const eventRouter = require("./routes/event");
 
 app.use("/login", loginRouter); //login is not protected
 
@@ -29,6 +30,7 @@ app.use(authenticateToken);
 
 app.use("/card", cardRouter);
 app.use("/account", accountRouter);
+app.use("/event", eventRouter);
 
 module.exports = app;
 

@@ -25,8 +25,50 @@ void userHomePage::setWebToken(const QByteArray &newWebToken)
 {
     webToken = newWebToken;
     qDebug()<<"Set Token " + webToken;
+    startSetUp();
+
 
 }
+
+void userHomePage::setEventsInView(QNetworkReply *reply)
+{
+    qDebug()<<"setEventsInView" ;
+
+    QByteArray response_data=reply->readAll();
+      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+      QJsonArray json_array = json_doc.array();
+      foreach (const QJsonValue &value, json_array) {
+          QJsonObject json_obj = value.toObject();
+          QString grade=json_obj["date"].toString()+" , "+QString::number(json_obj["sum"].toInt())+" , "+
+                  QString::number(json_obj["account_id"].toInt())+" , "+json_obj["grade_date"].toString()+"\r\n";
+
+          ui->bankView->addItem(grade);
+
+          qDebug()<<"setEventsInView" + grade;
+
+      }
+
+        reply->deleteLater();
+      gradeManager->deleteLater();
+}
+
+void userHomePage::startSetUp()
+{
+    qDebug()<<"startSetUp";
+
+    QString site_url=MyUrl::getBaseUrl()+"/event";
+        QNetworkRequest request((site_url));
+        //WEBTOKEN ALKU
+        request.setRawHeader(QByteArray("Authorization"),(webToken));
+        //WEBTOKEN LOPPU
+        gradeManager = new QNetworkAccessManager(this);
+
+        connect(gradeManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(setEventsInView(QNetworkReply*)));
+
+        reply = gradeManager->get(request);
+}
+
+
 
 
 void userHomePage::on_accountB_clicked()
