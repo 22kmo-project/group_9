@@ -17,7 +17,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE get_card_info(IN _card_id INT)
   BEGIN
-select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_ownerget_card_info
+select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_owner
  from
  card
  JOIN card_property
@@ -134,4 +134,24 @@ insert into owner_property (account_id, owner_id, owner_type)
 values(_account_id, _id_owner, _owner_type);
   END //
 DELIMITER ;
+
+#create_event
+DELIMITER //
+CREATE PROCEDURE create_event(IN account_id INT, IN date DATETIME, IN action varchar(45), IN sum INT)
+  BEGIN
+INSERT INTO event (account_id, date, action, sum)
+VALUES (account_id, date,'withdrawal', sum);
+  END //
+DELIMITER ;
+
+#get events
+DELIMITER //
+CREATE PROCEDURE get_events(IN account_id INT)
+  BEGIN
+SELECT * FROM event ORDER BY date DESC LIMIT 10;
+  END //
+DELIMITER ;
+
+
+
 
