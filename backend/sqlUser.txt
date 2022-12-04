@@ -1,0 +1,4 @@
+CREATE card 'group_9'@'localhost'
+ IDENTIFIED WITH mysql_native_password BY 'netpass';
+ 
+GRANT ALL on banksimul_db.* to 'group_9'@'localhost';
