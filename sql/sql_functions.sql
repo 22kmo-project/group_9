@@ -17,7 +17,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE get_card_info(IN _card_id INT)
   BEGIN
-select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_ownerget_card_info
+select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_owner
  from
  card
  JOIN card_property
@@ -132,6 +132,19 @@ CREATE PROCEDURE create_owner_property(IN _id_owner INT, IN _account_id INT, IN 
   BEGIN
 insert into owner_property (account_id, owner_id, owner_type)
 values(_account_id, _id_owner, _owner_type);
+  END //
+DELIMITER ;
+
+#get_account_balance_info
+DELIMITER //
+CREATE PROCEDURE get_account_balance_info(IN _id_account INT, _id_card INT)
+  BEGIN
+select account.balance, account.credit_limit, card_property.card_type
+ from
+ account
+ JOIN card_property
+  ON account.id_account=card_property.account_id
+ WHERE card_property.card_id = _id_card AND account.id_account = _id_account;
   END //
 DELIMITER ;
 
