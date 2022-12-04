@@ -67,7 +67,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
                 ui->errorTxt->setText("card num or pin is wrong!");
             }else{
                 objectUserHomePage=new userHomePage(id_card);
-                objectUserHomePage->setWebToken(response_data);
+                objectUserHomePage->setWebToken("Bearer "+response_data);
                 objectUserHomePage->show();
             }
         }

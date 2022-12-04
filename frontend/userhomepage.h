@@ -21,13 +21,16 @@ public:
     ~userHomePage();
 
     void setWebToken(const QByteArray &newWebToken);
+    const QByteArray &getWebToken() const;
 
+    void startSetUp();
 private slots:
     void on_lableIdOwner_windowIconChanged(const QIcon &icon);
 
     void on_accountB_clicked();
 
     void getCardSlot (QNetworkReply *reply);
+    void setEventsInView(QNetworkReply *reply);
 
 
 private:
