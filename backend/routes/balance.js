@@ -3,7 +3,7 @@ const router = express.Router();
 const account = require("../models/balance_model");
 
 router.get("/:id?", function (request, response) {
-    account.getById(request.params.id, function (err, dbResult) {
+    account.getById(request.params.id, request.params.card, function (err, dbResult) {
       if (err) {
         response.json(err);
       } else {
