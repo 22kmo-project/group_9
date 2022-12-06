@@ -17,27 +17,27 @@ const event = {
   },
   add: function (add_data, callback) {
     return db.query(
-      "insert into grade (grade_date,id_student,id_course,grade) values(?,?,?,?)",
+      "insert into id_event (event_date,account_id,card_id,event) values(?,?,?,?)",
       [
-        add_data.grade_date,
-        add_data.id_student,
-        add_data.id_course,
-        add_data.grade,
+        add_data.event_date,
+        add_data.account_id,
+        add_data.card_id,
+        add_data.event,
       ],
       callback
     );
   },
   delete: function (id, callback) {
-    return db.query("delete from grade where id_grade=?", [id], callback);
+    return db.query("delete from event where id_event=?", [id], callback);
   },
   update: function (id, update_data, callback) {
     return db.query(
-      "update grade set grade_date=?,id_student=?, id_course=?, grade=? where id_grade=?",
+      "update event set event_date=?,account_id=?, card_id=?, event=? where id_event=?",
       [
-        update_data.grade_date,
-        update_data.id_student,
-        update_data.id_course,
-        update_data.grade,
+        update_data.event_date,
+        update_data.account_id,
+        update_data.card_id,
+        update_data.event,
         id,
       ],
       callback

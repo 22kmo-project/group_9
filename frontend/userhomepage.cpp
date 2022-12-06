@@ -39,7 +39,7 @@ void userHomePage::setEventsInView(QNetworkReply *reply)
       QJsonArray json_array = json_doc.array();
       foreach (const QJsonValue &value, json_array) {
           QJsonObject json_obj = value.toObject();
-          QString grade=json_obj["date"].toString()+" , "+QString::number(json_obj["sum"].toInt())+" , "+
+          QString grade="event " + QString::number(json_obj["id_event"].toInt())+" "+json_obj["date"].toString()+" , "+QString::number(json_obj["sum"].toInt())+" , "+
                   QString::number(json_obj["account_id"].toInt())+" , "+json_obj["grade_date"].toString()+"\r\n";
 
           ui->bankView->addItem(grade);
@@ -98,7 +98,7 @@ void userHomePage::getCardSlot(QNetworkReply *reply)
     QString book = "";
     foreach (const QJsonValue &value, json_array) {
        QJsonObject json_obj = value.toObject();
-       book+=json_obj["card_type"].toString()+" , "+QString::number(json_obj["balance"].toInt())+" , "+
+       book+=json_obj["card_type"].toString()+" , balance: "+QString::number(json_obj["balance"].toInt())+" , "+
                QString::number(json_obj["credit_limit"].toInt())+" , "+json_obj["fname"].toString()+"\r\n";
     }
 
