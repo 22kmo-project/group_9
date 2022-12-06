@@ -12,16 +12,17 @@ router.post("/", function (request, response) {
 
     const pin = request.body.pin;
     console.log("pin " + id_card);
-
+    
     login.checkPassword(id_card, function (dbError, dbResult) {
       if (dbError) {
         response.json(dbError.errno);
         console.log("id_card does not exists");
         response.send(false);
       } else {
-        console.log(dbResult[0].pin + " " + pin);
-
+        /*console.log(dbResult[0].pin + " " + pin);*/
+        //yllä oleva aiheuttaa errorin jos account id on väärä
         if (dbResult.length > 0) {
+         
           bcrypt.compare(pin, dbResult[0].pin, function (err, compareResult) {
             if (compareResult) {
               console.log("succes");

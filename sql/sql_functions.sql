@@ -17,7 +17,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE get_card_info(IN _card_id INT)
   BEGIN
-select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_ownerget_card_info
+select card_property.card_type, owner.fname, owner.lname, account.balance, account.credit_limit, card_property.account_id, owner.id_owner
  from
  card
  JOIN card_property
@@ -135,12 +135,16 @@ values(_account_id, _id_owner, _owner_type);
   END //
 DELIMITER ;
 
-#create_event
+#create_account
 DELIMITER //
-CREATE PROCEDURE create_event(IN withdraw varchar(2), IN view_transactions varchar(2), IN show_balance varchar(2))
+CREATE PROCEDURE create_event(IN _account_id INT,IN _card_id INT, IN _date DATETIME, IN _action varchar(45), IN _sum INT)
   BEGIN
-insert into event (withdraw, view_transactions, show_balance)
-values (withdraw, view_transactions, show_balance);
+  #create event in table
+INSERT INTO event (account_id, date, action, sum, card_id)
+VALUES (_account_id, _date,_action, _sum, _card_id);
+#minus money in balance
+UPDATE account
+SET balance = balance -_sum
+WHERE id_account = _account_id;
   END //
 DELIMITER ;
-
