@@ -6,7 +6,9 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <cardtypewindow.h>
 #include "myurl.h"
+#include "userdata.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -29,7 +31,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    userHomePage *objectUserHomePage;
+    //userHomePage *objectUserHomePage;
+    CardTypeWIndow *objectCardType;
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     QByteArray response_data;

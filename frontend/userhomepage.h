@@ -6,7 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include "myurl.h"
-
+#include "userdata.h"
 
 namespace Ui {
 class userHomePage;
@@ -17,7 +17,7 @@ class userHomePage : public QDialog
     Q_OBJECT
 
 public:
-    explicit userHomePage(QString id_card, QWidget *parent = nullptr);
+    explicit userHomePage( QWidget *parent = nullptr);
     ~userHomePage();
 
     void setWebToken(const QByteArray &newWebToken);

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(49, 34, 68);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -23,8 +26,11 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 100, 102);</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Login</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="cardNumEnter">
@@ -36,6 +42,9 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="pinEnter">
     <property name="geometry">
@@ -45,6 +54,9 @@
       <width>113</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="loginB">
@@ -56,8 +68,11 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(20, 69, 82);</string>
+    </property>
     <property name="text">
-     <string>enter</string>
+     <string>Enter</string>
     </property>
    </widget>
    <widget class="QLabel" name="errorTxt">
@@ -68,6 +83,25 @@
       <width>311</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 100, 102);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>200</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(6, 90, 96);</string>
     </property>
     <property name="text">
      <string>TextLabel</string>

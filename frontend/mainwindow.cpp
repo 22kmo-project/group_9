@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -11,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete objectUserHomePage;
-    objectUserHomePage=nullptr;
+    //delete objectUserHomePage;
+    //objectUserHomePage=nullptr;
 }
 
 
@@ -66,9 +67,22 @@ void MainWindow::loginSlot(QNetworkReply *reply)
                 ui->pinEnter->clear();
                 ui->errorTxt->setText("card num or pin is wrong!");
             }else{
-                objectUserHomePage=new userHomePage(id_card);
+                userdata::cardId = id_card;
+                userdata::webToken = "Bearer "+response_data;
+
+                objectCardType = new CardTypeWIndow();
+                objectCardType->show();
+
+                /*objectUserHomePage=new userHomePage(id_card);
                 objectUserHomePage->setWebToken("Bearer "+response_data);
-                objectUserHomePage->show();
+                objectUserHomePage->show();*/
+
+
+                qDebug()<<"getCardId: " + userdata::getCardId();
+                qDebug()<<"webToken: " + userdata::getWebToken();
+
+                this->close();
+
             }
         }
     }

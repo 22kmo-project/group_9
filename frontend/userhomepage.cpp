@@ -1,13 +1,15 @@
 #include "userhomepage.h"
 #include "ui_userhomepage.h"
 
-userHomePage::userHomePage(QString id_card, QWidget *parent) :
+userHomePage::userHomePage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::userHomePage)
 {
     ui->setupUi(this);
-    ui->lableIdOwner->setText(id_card);
-    idCard=id_card;
+    ui->lableIdOwner->setText(userdata::getCardId());
+    idCard=userdata::getCardId();
+    startSetUp();
+
 }
 
 userHomePage::~userHomePage()
@@ -25,7 +27,6 @@ void userHomePage::setWebToken(const QByteArray &newWebToken)
 {
     webToken = newWebToken;
     qDebug()<<"Set Token " + webToken;
-    startSetUp();
 
 
 }
@@ -54,12 +55,12 @@ void userHomePage::setEventsInView(QNetworkReply *reply)
 
 void userHomePage::startSetUp()
 {
-    qDebug()<<"startSetUp";
+    qDebug()<<"startSetUp, webToken: " + userdata::getWebToken();
 
     QString site_url=MyUrl::getBaseUrl()+"/event";
         QNetworkRequest request((site_url));
         //WEBTOKEN ALKU
-        request.setRawHeader(QByteArray("Authorization"),(webToken));
+        request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
         //WEBTOKEN LOPPU
         gradeManager = new QNetworkAccessManager(this);
 
@@ -80,7 +81,7 @@ void userHomePage::on_accountB_clicked()
     QNetworkRequest request((site_url));
     //WEBTOKEN ALKU
     //QByteArray myToken="Bearer "+wb;
-    request.setRawHeader(QByteArray("Authorization"),(webToken));
+    request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
     //WEBTOKEN LOPPU
     gradeManager = new QNetworkAccessManager(this);
 
