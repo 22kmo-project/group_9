@@ -148,3 +148,13 @@ select account.balance, account.credit_limit, card_property.card_type
   END //
 DELIMITER ;
 
+     #update_account_balance
+DELIMITER //
+CREATE PROCEDURE update_account_balance(IN _id_account INT, _balance DOUBLE)
+  BEGIN
+update account
+set balance = _balance
+where id_account = _id_account;
+  END //
+DELIMITER ;
+

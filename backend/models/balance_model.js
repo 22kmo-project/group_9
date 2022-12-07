@@ -1,21 +1,19 @@
 const db = require("../database");
-const account = require("./account_model");
 
 const balance = {
-  getById: function (id,card,callback) {
-
+  getById: function (id,card, callback) {
+    console.log("testim");
+    console.log("card",card);
     return db.query(
       "call get_account_balance_info(?,?)",
-      [id], [card],callback
+      [id,card],callback
     );
   },
-
-  update: function (id, account, callback) {
+  update: function (id, newbalance, callback) {
     return db.query(
-      "call update_account_balance(?,?)",
-      [hash, account.id_account, account.balance],
-      callback
-    );
-  },
+        /*"update account set balance=? where id_account=?",*/
+        "call update_account_balance(?,?)",
+        [newbalance,id],callback);
+}
 };
 module.exports = balance;
