@@ -119,6 +119,9 @@ hr { height: 1px; border-width: 0; }
    <property name="styleSheet">
     <string notr="true">background-color: rgb(0, 100, 102);</string>
    </property>
+   <property name="isWrapping" stdset="0">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">

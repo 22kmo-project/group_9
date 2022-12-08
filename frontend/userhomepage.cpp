@@ -40,7 +40,7 @@ void userHomePage::setEventsInView(QNetworkReply *reply)
       QJsonArray json_array = json_doc.array();
       foreach (const QJsonValue &value, json_array) {
           QJsonObject json_obj = value.toObject();
-          QString grade="event date: "+json_obj["date"].toString()+" , action: " + json_obj["action"].toString()+ ", sum: " +QString::number(json_obj["sum"].toInt())+" , account id: "+
+          QString grade="event date: "+json_obj["dateeu"].toString()+" , action: " + json_obj["action"].toString()+ ", sum: " +QString::number(json_obj["sum"].toInt())+" , account id: "+
                             QString::number(json_obj["account_id"].toInt())+"  "+json_obj["grade_date"].toString()+"\r\n";
 
           ui->bankView->addItem(grade);

@@ -154,4 +154,6 @@ select * from account;
 select * from event;
 
 
-call create_event(1,1,"2022-12-7","loh",2500)
+call create_event(1,1,"2022-12-7","loh",2500);
+
+select id_event, date as "date",account_id, action, sum, card_id from event order by date desc;

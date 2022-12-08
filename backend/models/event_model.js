@@ -5,13 +5,13 @@ const saltRounds = 10;
 const event = {
   get: function (callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from event',
+      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from  event',
       callback
     );
   },
   getAll: function (callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from event',
+      'select id_event, date_format(date,"%d.%m.%Y") as "dateeu",account_id, action, sum, card_id from event order by date desc;',
       callback
     );
   },
