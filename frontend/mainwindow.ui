@@ -6,15 +6,226 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>799</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(49, 34, 68);
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-20</y>
+      <width>801</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(33, 47, 69);
+background-color: rgb(11, 82, 91)</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; font-style:italic;&quot;&gt;BankSimul&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="cardNumEnter">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>290</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+	border: 2px solid #144552;
+	border-radius: 10px;
+	color: white
+}
+
+QLineEdit:focus {
+	border: 2px solid #006466;
+}</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="pinEnter">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>390</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+	border: 2px solid #144552;
+	border-radius: 10px;
+	color: white
+}
+
+QLineEdit:focus {
+	border: 2px solid #006466;
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loginB">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>460</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(20, 69, 82);
+color: white</string>
+    </property>
+    <property name="text">
+     <string>Jatka</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="errorTxt">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>510</y>
+      <width>511</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(6, 90, 96);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>260</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;PIN-koodi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>360</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;Salasana&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="HelpButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>300</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;Syötä 4-numeroinen PIN-koodi.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+background-color: rgb(20, 69, 82);
+color: white
+
+</string>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="HelpButton_2">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>400</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;Syötä 4-numeroinen PIN-koodi.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+background-color: rgb(20, 69, 82);
+color: white</string>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>190</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(6, 90, 96);
+font: 9pt &quot;Segoe UI&quot;;
+font: 9pt &quot;Segoe UI&quot;;
+font: 16pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Kirjaudu sisään&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <zorder>cardNumEnter</zorder>
+   <zorder>label</zorder>
+   <zorder>pinEnter</zorder>
+   <zorder>loginB</zorder>
+   <zorder>errorTxt</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>HelpButton_2</zorder>
+   <zorder>HelpButton</zorder>
+   <zorder>label_4</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>799</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
