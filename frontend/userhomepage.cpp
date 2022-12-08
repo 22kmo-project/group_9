@@ -40,8 +40,8 @@ void userHomePage::setEventsInView(QNetworkReply *reply)
       QJsonArray json_array = json_doc.array();
       foreach (const QJsonValue &value, json_array) {
           QJsonObject json_obj = value.toObject();
-          QString grade=json_obj["date"].toString()+" , "+QString::number(json_obj["sum"].toInt())+" , "+
-                  QString::number(json_obj["account_id"].toInt())+" , "+json_obj["grade_date"].toString()+"\r\n";
+          QString grade="event date: "+json_obj["date"].toString()+" , action: " + json_obj["action"].toString()+ ", sum: " +QString::number(json_obj["sum"].toInt())+" , account id: "+
+                            QString::number(json_obj["account_id"].toInt())+"  "+json_obj["grade_date"].toString()+"\r\n";
 
           ui->bankView->addItem(grade);
 
@@ -99,8 +99,8 @@ void userHomePage::getCardSlot(QNetworkReply *reply)
     QString book = "";
     foreach (const QJsonValue &value, json_array) {
        QJsonObject json_obj = value.toObject();
-       book+=json_obj["card_type"].toString()+" , "+QString::number(json_obj["balance"].toInt())+" , "+
-               QString::number(json_obj["credit_limit"].toInt())+" , "+json_obj["fname"].toString()+"\r\n";
+       book+="card type: " +json_obj["card_type"].toString()+" , balance: "+QString::number(json_obj["balance"].toInt())+" , credit limit: "+
+                      QString::number(json_obj["credit_limit"].toInt())+" , account owner: "+json_obj["fname"].toString()+"\r\n";
     }
 
     qDebug()<<book;
@@ -109,5 +109,12 @@ void userHomePage::getCardSlot(QNetworkReply *reply)
 
     reply->deleteLater();
     gradeManager->deleteLater();
+}
+
+
+void userHomePage::on_pushButton_2_clicked()
+{
+    objectEvent = new EventWindow();
+    objectEvent->show();
 }
 

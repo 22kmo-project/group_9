@@ -144,7 +144,14 @@ INSERT INTO event (account_id, date, action, sum, card_id)
 VALUES (_account_id, _date,_action, _sum, _card_id);
 #minus money in balance
 UPDATE account
-SET balance = balance -_sum
+SET balance = balance +_sum
 WHERE id_account = _account_id;
   END //
 DELIMITER ;
+
+select * from card;
+select * from account;
+select * from event;
+
+
+call create_event(1,1,"2022-12-7","loh",2500)

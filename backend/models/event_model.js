@@ -17,12 +17,13 @@ const event = {
   },
   add: function (add_data, callback) {
     return db.query(
-      "insert into grade (grade_date,id_student,id_course,grade) values(?,?,?,?)",
+      "call create_event(?,?,?,?,?)",
       [
-        add_data.grade_date,
-        add_data.id_student,
-        add_data.id_course,
-        add_data.grade,
+        add_data.account_id,
+        add_data.card_id,
+        add_data.date,
+        add_data.action,
+        add_data.sum,
       ],
       callback
     );

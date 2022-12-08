@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include "myurl.h"
 #include "userdata.h"
+#include <eventwindow.h>
 
 namespace Ui {
 class userHomePage;
@@ -33,7 +34,10 @@ private slots:
     void setEventsInView(QNetworkReply *reply);
 
 
+    void on_pushButton_2_clicked();
+
 private:
+    EventWindow *objectEvent;
     Ui::userHomePage *ui;
     QByteArray webToken;
     QString idCard;
