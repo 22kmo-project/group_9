@@ -148,3 +148,6 @@ SET balance = balance -_sum
 WHERE id_account = _account_id;
   END //
 DELIMITER ;
+
+call create_event(1,1,"2022-12-6", "withdraw", 150)
+select * from account

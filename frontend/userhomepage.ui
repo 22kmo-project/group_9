@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 127);
+   <string notr="true">background-color: rgb(49, 34, 68);
 </string>
   </property>
   <widget class="QLabel" name="lableIdOwner">
@@ -35,7 +35,7 @@
     <string notr="true">border-color: rgb(54, 99, 76)</string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#065a60;&quot;&gt;TextLabel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="accountB">
@@ -48,27 +48,9 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-background-color: rgb(234, 255, 248);
-color: #33;
-border: 2px solid #555;
-border-radius: 20px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #fff, stop: 1 #888
-
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #fff, stop: 1 #bbb
-
-);
-}</string>
+    <string notr="true">
+background-color: rgb(20, 69, 82);
+color: rgb(6, 90, 96)</string>
    </property>
    <property name="text">
     <string>Get account info</string>
@@ -84,8 +66,8 @@ radius: 1.35, stop: 0 #fff, stop: 1 #bbb
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 255, 248);
-</string>
+    <string notr="true">background-color: rgb(20, 69, 82);
+color: rgb(6, 90, 96)</string>
    </property>
    <property name="text">
     <string>Withdraw</string>
@@ -101,7 +83,7 @@ radius: 1.35, stop: 0 #fff, stop: 1 #bbb
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 255, 248);</string>
+    <string notr="true">background-color: rgb(20, 69, 82);</string>
    </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -122,7 +104,7 @@ hr { height: 1px; border-width: 0; }
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Transactions&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#06595e;&quot;&gt;Transactions&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QListWidget" name="bankView">
@@ -135,7 +117,7 @@ hr { height: 1px; border-width: 0; }
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(234, 255, 248);</string>
+    <string notr="true">background-color: rgb(0, 100, 102);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -153,11 +135,10 @@ hr { height: 1px; border-width: 0; }
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-border-color: rgb(54, 99, 76);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
-    <string>Account number :</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#065a60;&quot;&gt;Account number :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
