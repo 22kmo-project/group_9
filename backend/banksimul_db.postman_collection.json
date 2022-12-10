@@ -1,0 +1,1000 @@
+{
+	"info": {
+		"_postman_id": "45337357-f08a-4c85-b04e-725c88414221",
+		"name": "banksimul_db",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getallaccounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/account/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"account",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_account_balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "card",
+							"value": "21",
+							"type": "default"
+						},
+						{
+							"key": "sum",
+							"value": "2000",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/balance/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"balance",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_balance",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "newbalance",
+							"value": "776878",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/balance/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"balance",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/account/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"account",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "balance",
+							"value": "60000",
+							"type": "default"
+						},
+						{
+							"key": "credit_limit",
+							"value": "250",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/account",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"account"
+					],
+					"query": [
+						{
+							"key": "balance",
+							"value": "7000",
+							"disabled": true
+						},
+						{
+							"key": "credit_limit",
+							"value": "200",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_account",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_account",
+							"value": "5",
+							"type": "default"
+						},
+						{
+							"key": "balance",
+							"value": "666",
+							"type": "default"
+						},
+						{
+							"key": "credit_limit",
+							"value": "600",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/account/5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"account",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/account/1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"account",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_owner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/owner/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_owner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Nakki",
+							"type": "default"
+						},
+						{
+							"key": "lname",
+							"value": "Kakkare",
+							"type": "default"
+						},
+						{
+							"key": "address",
+							"value": "Kukkatie 6",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "545345345",
+							"type": "default"
+						},
+						{
+							"key": "owner_type",
+							"value": "owner",
+							"type": "default"
+						},
+						{
+							"key": "account_id",
+							"value": "7",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/owner/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_owner",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Nakki",
+							"type": "default"
+						},
+						{
+							"key": "lname",
+							"value": "Kakkare",
+							"type": "default"
+						},
+						{
+							"key": "address",
+							"value": "Kukkatie 77",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "545345345",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/owner/7",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_owner",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Nakki",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Kakkare",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "Kukkatie 6",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "phone",
+							"value": "545345345",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/owner/4",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_card",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pin",
+							"value": "1234",
+							"type": "default"
+						},
+						{
+							"key": "owner_id",
+							"value": "9",
+							"type": "default"
+						},
+						{
+							"key": "account_id",
+							"value": "8",
+							"type": "default"
+						},
+						{
+							"key": "card_type",
+							"value": "credit",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_card",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pin",
+							"value": "444",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card/2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Nakki",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Kakkare",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "Kukkatie 6",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "phone",
+							"value": "545345345",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card/1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_card_property",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/card_property/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card_property",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_card_property",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "card_type",
+							"value": "credit",
+							"type": "default"
+						},
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "account_id",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card_property/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card_property",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_card_property",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/card_property/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card_property",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_card_property",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Nakki",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Kakkare",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "Kukkatie 6",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "phone",
+							"value": "545345345",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/card_property/3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"card_property",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_owner_property",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/owner_property/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner_property",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_owner_property",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "owner_type",
+							"value": "owner",
+							"type": "default"
+						},
+						{
+							"key": "owner_id",
+							"value": "7",
+							"type": "default"
+						},
+						{
+							"key": "account_id",
+							"value": "6",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/owner_property/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner_property",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_owner_property",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "owner_type",
+							"value": "user",
+							"type": "default"
+						},
+						{
+							"key": "owner_id",
+							"value": "7",
+							"type": "default"
+						},
+						{
+							"key": "account_id",
+							"value": "6",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/owner_property/7",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner_property",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_owner_property",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/owner_property/7",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"owner_property",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/event/3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"event",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account_id",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "date",
+							"value": "1990-01-01",
+							"type": "default"
+						},
+						{
+							"key": "action",
+							"value": "raise",
+							"type": "default"
+						},
+						{
+							"key": "sum",
+							"value": "2000",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/event",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account_id",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "date",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "action",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "sum",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/event",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/event",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
