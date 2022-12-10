@@ -31,7 +31,7 @@ const card = {
     });
   },
   delete: function (id, callback) {
-    return db.query("delete from card where id_card=?", [id], callback);
+    return db.query("delete from card where id_card=?", [_id_account], callback);
   },
   update: function (id, card, callback) {
     bcrypt.hash(card.pin, saltRounds, function (err, hash) {

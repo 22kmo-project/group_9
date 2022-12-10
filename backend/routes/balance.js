@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const balance = require("../models/balance_model");
 
-router.get("/:id?/:card?/:sum?",function (request, response) {
+router.get("/:id?",function (request, response) {
   console.log("testi");
   const card=request.params.card;
   const id=request.params.id;
-  const sum=request.params.sum;
+  //const sum=request.params.sum;
   balance.getById(id,card, function (err,dbResult) {
 
       if (err) {
@@ -25,8 +25,8 @@ router.get("/:id?/:card?/:sum?",function (request, response) {
 
   });
 
-  router.put("/:id", function (request, response) {
-    balance.update(request.params.id, request.body, function (err, dbResult) {
+  router.put("/", function (request, response) {
+    balance.update(request.body, function (err, dbResult) {
       if (err) {
         response.json(err);
       } else {

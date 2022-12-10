@@ -158,3 +158,20 @@ where id_account = _id_account;
   END //
 DELIMITER ;
 
+     #delete_account_and_foreign_keys
+DELIMITER //
+CREATE PROCEDURE delete_account_and_foreign_keys(IN _id_account INT)
+  BEGIN
+update card_property
+set account_id = null
+where account_id = _id_account;
+update owner_property
+set account_id = null
+where account_id = _id_account;
+update event
+set account_id = null
+where account_id = _id_account;
+delete from account
+where id_account = _id_account;
+  END //
+DELIMITER ;
