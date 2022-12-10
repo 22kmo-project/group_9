@@ -1,0 +1,6 @@
+Account model, tarvitaan getbyid
+tarvitaan delete_account niille joihin on foreign_key owener_property ja carcd_propertyssa
+
+
+add_card_property
+valittaa foreign keysta

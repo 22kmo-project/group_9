@@ -1,9 +1,9 @@
 const db = require("../database");
 
-const account = {
+const card_property = {
   getById: function (id, callback) {
     db.query(
-      "SELECT * from account where id_account=?",
+      "SELECT * from card_property where id_card_property=?",
       [id],
       function (err, result, fields) {
         if (err) throw err;
@@ -12,12 +12,10 @@ const account = {
       }
     );
 
-    //Siirretäänkö tämä erilliseen modeliin?
-    //return db.query("call get_account_info(?)", [id], callback);
   },
   getAll: function (callback) {
-    //Select all accounts and return the result
-    db.query("select * from account", function (err, result, fields) {
+    //Select all card_propertys and return the result
+    db.query("select * from card_property", function (err, result, fields) {
 
       if (err) throw err;
       console.log(result);
@@ -25,26 +23,25 @@ const account = {
       callback(result);
     });
 
-    //return db.query("SELECT * FROM account", callback);
   },
-  add: function (account, callback) {
+  add: function (card_property, callback) {
     return db.query(
-      "insert into account (balance,credit_limit) values(?,?)",
-      [account.balance, account.credit_limit],
+      "insert into card_property (card_type,card_id,account_id) values(?,?,?)",
+      [card_property.card_type, card_property.card_id,card_property.account_id],
       callback
     );
   },
   delete: function (id, callback) {
-    //return db.query("delete from account where id_account=?", [id], callback);
-    return db.query ("call delete_account_and_foreign_keys(?)",[id],callback);
+    //return db.query("delete from card_property where id_card_property=?", [id], callback);
+    return db.query ("delete from card_property where id_card_property=?",[id],callback);
     
   },
-  update: function (id, account, callback) {
+  update: function (id, card_property, callback) {
     return db.query(
-      "update account set balance=?,credit_limit=? where id_account=?",
-      [account.balance, account.credit_limit, id],
+      "update card_property set card_type=?,card_id=?,account_id=? where id_card_property=?",
+      [card_property.card_type, card_property.card_id,card_property.account_id, id],
       callback
     );
   },
 };
-module.exports = account;
+module.exports = card_property;

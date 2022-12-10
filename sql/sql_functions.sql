@@ -111,10 +111,16 @@ DELIMITER ;
 
 #create_owner
 DELIMITER //
-CREATE PROCEDURE create_owner(IN _fname varchar(45), IN _lname varchar(45),IN _address varchar(45),IN _phone varchar(45))
+CREATE PROCEDURE create_owner(IN _fname varchar(45), IN _lname varchar(45),IN _address varchar(45),IN _phone varchar(45),IN _owner_type varchar(5),IN _account_id INT)
   BEGIN
 INSERT INTO owner (fname, lname, phone, address)
 VALUES (_fname,_lname,_phone,_address);
+INSERT INTO owner_property (owner_type,owner_id,account_id)
+VALUES (_owner_type,
+/*(select id_owner from owner where id is newest),*/
+(SELECT MAX(id_owner)
+FROM owner),
+_account_id);
   END //
 DELIMITER ;
 
@@ -190,3 +196,31 @@ delete from owner
 where id_owner = _id_owner;
   END //
 DELIMITER ;
+
+     #delete_card_and_foreign_keys
+DELIMITER //
+CREATE PROCEDURE delete_card_and_foreign_keys(IN _id_card INT)
+  BEGIN
+update card_property
+set card_id = null
+where card_id = _id_card;
+delete from card
+where id_card = _id_card;
+  END //
+DELIMITER ;
+
+     #add_account_owner_card_properties
+DELIMITER //
+CREATE PROCEDURE create_card(IN _pin varchar(255), IN owner_id INT,IN account_id INT, IN card_type varchar(6))
+  BEGIN
+INSERT INTO card (pin, owner_id)
+VALUES (_pin, owner_id);
+insert into card_property (card_type, card_id, account_id)
+values(card_type, 
+/*(select id_card from card where card.pin = _pin),*/
+(SELECT MAX(id_card)
+FROM card),
+account_id);
+  END //
+DELIMITER ;
+

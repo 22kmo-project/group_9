@@ -1,9 +1,9 @@
 const db = require("../database");
 
-const account = {
+const event = {
   getById: function (id, callback) {
     db.query(
-      "SELECT * from account where id_account=?",
+      "SELECT * from event where id_event=?",
       [id],
       function (err, result, fields) {
         if (err) throw err;
@@ -12,12 +12,10 @@ const account = {
       }
     );
 
-    //Siirretäänkö tämä erilliseen modeliin?
-    //return db.query("call get_account_info(?)", [id], callback);
   },
   getAll: function (callback) {
-    //Select all accounts and return the result
-    db.query("select * from account", function (err, result, fields) {
+    //Select all events and return the result
+    db.query("select * from event", function (err, result, fields) {
 
       if (err) throw err;
       console.log(result);
@@ -25,26 +23,25 @@ const account = {
       callback(result);
     });
 
-    //return db.query("SELECT * FROM account", callback);
+    //return db.query("SELECT * FROM event", callback);
   },
-  add: function (account, callback) {
+  add: function (event, callback) {
     return db.query(
-      "insert into account (balance,credit_limit) values(?,?)",
-      [account.balance, account.credit_limit],
+      "insert into event (account_id,date,action,sum) values(?,?,?,?)",
+      [event.account_id, event.date,event.action, event.sum],
       callback
     );
   },
   delete: function (id, callback) {
-    //return db.query("delete from account where id_account=?", [id], callback);
-    return db.query ("call delete_account_and_foreign_keys(?)",[id],callback);
+    return db.query ("delete from event where id_event=?",[id],callback);
     
   },
-  update: function (id, account, callback) {
+  update: function (id, event, callback) {
     return db.query(
-      "update account set balance=?,credit_limit=? where id_account=?",
-      [account.balance, account.credit_limit, id],
+      "update event set account_id=?,date=?,action=?,sum=? where id_event=?",
+      [event.account_id, event.date,event.action, event.sum, id],
       callback
     );
   },
 };
-module.exports = account;
+module.exports = event;

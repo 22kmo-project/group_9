@@ -1,9 +1,9 @@
 const db = require("../database");
 
-const account = {
+const owner_property = {
   getById: function (id, callback) {
     db.query(
-      "SELECT * from account where id_account=?",
+      "SELECT * from owner_property where id_owner_property=?",
       [id],
       function (err, result, fields) {
         if (err) throw err;
@@ -12,12 +12,10 @@ const account = {
       }
     );
 
-    //Siirretäänkö tämä erilliseen modeliin?
-    //return db.query("call get_account_info(?)", [id], callback);
   },
   getAll: function (callback) {
-    //Select all accounts and return the result
-    db.query("select * from account", function (err, result, fields) {
+    //Select all owner_propertys and return the result
+    db.query("select * from owner_property", function (err, result, fields) {
 
       if (err) throw err;
       console.log(result);
@@ -25,26 +23,25 @@ const account = {
       callback(result);
     });
 
-    //return db.query("SELECT * FROM account", callback);
+    //return db.query("SELECT * FROM owner_property", callback);
   },
-  add: function (account, callback) {
+  add: function (owner_property, callback) {
     return db.query(
-      "insert into account (balance,credit_limit) values(?,?)",
-      [account.balance, account.credit_limit],
+      "insert into owner_property (owner_type,owner_id,account_id) values(?,?,?)",
+      [owner_property.owner_type, owner_property.owner_id,owner_property.account_id],
       callback
     );
   },
   delete: function (id, callback) {
-    //return db.query("delete from account where id_account=?", [id], callback);
-    return db.query ("call delete_account_and_foreign_keys(?)",[id],callback);
+    return db.query ("delete from owner_property where id_owner_property=?",[id],callback);
     
   },
-  update: function (id, account, callback) {
+  update: function (id, owner_property, callback) {
     return db.query(
-      "update account set balance=?,credit_limit=? where id_account=?",
-      [account.balance, account.credit_limit, id],
+      "update owner_property set owner_type=?,owner_id=?,account_id=? where id_owner_property=?",
+      [owner_property.owner_type, owner_property.owner_id,owner_property.account_id, id],
       callback
     );
   },
 };
-module.exports = account;
+module.exports = owner_property;
