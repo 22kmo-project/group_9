@@ -175,3 +175,18 @@ delete from account
 where id_account = _id_account;
   END //
 DELIMITER ;
+
+     #delete_owner_and_foreign_keys
+DELIMITER //
+CREATE PROCEDURE delete_owner_and_foreign_keys(IN _id_owner INT)
+  BEGIN
+update owner_property
+set owner_id = null
+where owner_id = _id_owner;
+update card
+set owner_id = null
+where owner_id = _id_owner;
+delete from owner
+where id_owner = _id_owner;
+  END //
+DELIMITER ;
