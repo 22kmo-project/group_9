@@ -1,0 +1,17 @@
+debug/alleventswindow.o
+debug/cardtypewindow.o
+debug/deposidcahs.o
+debug/eventwindow.o
+debug/main.o
+debug/mainwindow.o
+debug/myurl.o
+debug/userdata.o
+debug/userhomepage.o
+debug/welcomewindow.o
+debug/moc_alleventswindow.o
+debug/moc_cardtypewindow.o
+debug/moc_deposidcahs.o
+debug/moc_eventwindow.o
+debug/moc_mainwindow.o
+debug/moc_userhomepage.o
+debug/moc_welcomewindow.o

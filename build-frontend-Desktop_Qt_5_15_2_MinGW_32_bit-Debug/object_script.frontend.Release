@@ -1,0 +1,17 @@
+release/alleventswindow.o
+release/cardtypewindow.o
+release/deposidcahs.o
+release/eventwindow.o
+release/main.o
+release/mainwindow.o
+release/myurl.o
+release/userdata.o
+release/userhomepage.o
+release/welcomewindow.o
+release/moc_alleventswindow.o
+release/moc_cardtypewindow.o
+release/moc_deposidcahs.o
+release/moc_eventwindow.o
+release/moc_mainwindow.o
+release/moc_userhomepage.o
+release/moc_welcomewindow.o
