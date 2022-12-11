@@ -1,5 +1,5 @@
 Tilin tekeminen, käyttäjän ja kortin liittäminen siihen
 
 post: account(balance,credit_limit) tekee tilin ja sen tiedot. Ota ID ylös
-post: owner(fname,lname,address,phone,owner_type,account_id) Tekee omistajan ja liitää sen tiliin. Ota ID ylös
-post: card(pin,owner_id,account_id,card_type) tekee kortin ja liittää sen owneriin sekä tiliin.
+post: owner_creator(fname,lname,address,phone,owner_type,account_id) Tekee omistajan ja liitää sen tiliin. Ota ID ylös
+post: card_creator(pin,owner_id,account_id,card_type) tekee kortin ja liittää sen owneriin sekä tiliin.

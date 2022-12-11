@@ -25,12 +25,12 @@ const card = {
           card.card_type
       );
 
-      //return db.query("insert into card ( pin) values(?)", [hash], callback);
-      return db.query(
+      return db.query("insert into card (pin,owner_id) values(?,?)", [hash,card.owner_id], callback);
+      /*return db.query(
         "call create_card(?,?,?,?)",
         [hash, card.owner_id, card.account_id, card.card_type],
-        callback
-      );
+        callback)*/
+      ;
     });
   },
   delete: function (id, callback) {
