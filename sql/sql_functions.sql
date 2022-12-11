@@ -26,6 +26,8 @@ owner_property.owner_type, owner.fname, owner.lname, owner.address,
   ON card_property.card_id=card.id_card
    JOIN owner
   ON owner.id_owner=card.owner_id
+       JOIN owner_property
+     ON owner_property.owner_id = owner.id_owner
    JOIN account
   ON card_property.account_id=account.id_account
      where id_card = _card_id;
@@ -226,3 +228,15 @@ account_id);
   END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE create_event(IN _account_id INT,IN _card_id INT, IN _date DATETIME, IN _action varchar(45), IN _sum INT)
+  BEGIN
+  #create event in table
+INSERT INTO event (account_id, date, action, sum, card_id)
+VALUES (_account_id, _date,_action, _sum, _card_id);
+#minus money in balance
+UPDATE account
+SET balance = balance +_sum
+WHERE id_account = _account_id;
+  END //
+DELIMITER ;
