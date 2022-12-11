@@ -3,26 +3,28 @@ const bcrypt = require("bcryptjs");
 
 const saltRounds = 10;
 const event = {
-  get: function (callback) {
+  getById: function (id, callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from event',
+      'select id_event, date_format(date,"%d.%m.%Y %H:%i") as "dateeu",account_id, action, sum, card_id from  event where account_id = ? order by date desc ',
+      [id],
       callback
     );
   },
   getAll: function (callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from event',
+      'select id_event, date_format(date,"%d.%m.%Y %H:%i") as "dateeu",account_id, action, sum, card_id from event order by date desc;',
       callback
     );
   },
   add: function (add_data, callback) {
     return db.query(
-      "insert into grade (grade_date,id_student,id_course,grade) values(?,?,?,?)",
+      "call create_event(?,?,?,?,?)",
       [
-        add_data.grade_date,
-        add_data.id_student,
-        add_data.id_course,
-        add_data.grade,
+        add_data.account_id,
+        add_data.card_id,
+        add_data.date,
+        add_data.action,
+        add_data.sum,
       ],
       callback
     );
