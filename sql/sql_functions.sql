@@ -226,3 +226,15 @@ account_id);
   END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE create_event(IN _account_id INT,IN _card_id INT, IN _date DATETIME, IN _action varchar(45), IN _sum INT)
+  BEGIN
+  #create event in table
+INSERT INTO event (account_id, date, action, sum, card_id)
+VALUES (_account_id, _date,_action, _sum, _card_id);
+#minus money in balance
+UPDATE account
+SET balance = balance +_sum
+WHERE id_account = _account_id;
+  END //
+DELIMITER ;
