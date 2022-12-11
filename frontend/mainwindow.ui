@@ -32,7 +32,7 @@
 background-color: rgb(11, 82, 91)</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; font-style:italic;&quot;&gt;BankSimul&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; font-style:italic; color:#fdffff;&quot;&gt;BankSimul&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -41,8 +41,8 @@ background-color: rgb(11, 82, 91)</string>
    <widget class="QLineEdit" name="cardNumEnter">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>290</y>
+      <x>290</x>
+      <y>250</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -65,8 +65,8 @@ QLineEdit:focus {
    <widget class="QLineEdit" name="pinEnter">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>390</y>
+      <x>290</x>
+      <y>350</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -89,8 +89,8 @@ QLineEdit:focus {
    <widget class="QPushButton" name="loginB">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>460</y>
+      <x>360</x>
+      <y>420</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -100,14 +100,14 @@ QLineEdit:focus {
 color: white</string>
     </property>
     <property name="text">
-     <string>Jatka</string>
+     <string>Login</string>
     </property>
    </widget>
    <widget class="QLabel" name="errorTxt">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>510</y>
+      <x>150</x>
+      <y>470</y>
       <width>511</width>
       <height>20</height>
      </rect>
@@ -126,48 +126,32 @@ color: white</string>
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>260</y>
+      <y>220</y>
       <width>81</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;PIN-koodi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Card ID&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>360</y>
+      <x>360</x>
+      <y>320</y>
       <width>81</width>
       <height>16</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#065a60;&quot;&gt;Salasana&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;PIN Code&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>190</y>
-      <width>251</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(6, 90, 96);
-font: 9pt &quot;Segoe UI&quot;;
-font: 9pt &quot;Segoe UI&quot;;
-font: 16pt &quot;Segoe UI&quot;;</string>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Kirjaudu sisään&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <zorder>cardNumEnter</zorder>
@@ -177,7 +161,6 @@ font: 16pt &quot;Segoe UI&quot;;</string>
    <zorder>errorTxt</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

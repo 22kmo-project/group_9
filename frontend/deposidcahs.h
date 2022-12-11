@@ -1,5 +1,6 @@
-#ifndef EVENTWINDOW_H
-#define EVENTWINDOW_H
+#ifndef DEPOSIDCAHS_H
+#define DEPOSIDCAHS_H
+
 
 #include <QDialog>
 #include <QtNetwork>
@@ -8,26 +9,22 @@
 #include "userdata.h"
 #include "myurl.h"
 
+
 namespace Ui {
-class EventWindow;
+class DeposidCahs;
 }
 
-class EventWindow : public QDialog
+class DeposidCahs : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit EventWindow(QWidget *parent = nullptr);
-    ~EventWindow();
-
-    void setupCheck();
-    void setButtonCon(QString num, bool active);
+    explicit DeposidCahs(QWidget *parent = nullptr);
+    ~DeposidCahs();
+    void createEvent(QString num);
+    //void SetUserPage(userHomePage onj);
 private slots:
     void addEvent (QNetworkReply *reply);
-    void checkInputB (QNetworkReply *reply);
-
-
-    void on_eventB_clicked();
 
     void on_withd20_clicked();
 
@@ -37,25 +34,21 @@ private slots:
 
     void on_withd100_clicked();
 
-    void on_inputPressed_clicked();
-
-    void createEvent(QString num);
-
+    void on_pushButton_5_clicked();
 
     void on_inputWith_editingFinished();
 
-
-    void on_pushButton_5_clicked();
+    void on_inputPressed_clicked();
 
 private:
-    Ui::EventWindow *ui;
+    Ui::DeposidCahs *ui;
     QNetworkAccessManager *postManager;
     QNetworkReply *reply;
     QByteArray response_data;
 
     QNetworkReply *replyBalance;
     QByteArray response_data_balance;
-    QString buttonNum;
+    //userHomePage *objHomePage;
 };
 
-#endif // EVENTWINDOW_H
+#endif // DEPOSIDCAHS_H

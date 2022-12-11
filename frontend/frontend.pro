@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     cardtypewindow.cpp \
+    deposidcahs.cpp \
     eventwindow.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     cardtypewindow.h \
+    deposidcahs.h \
     eventwindow.h \
     mainwindow.h \
     myurl.h \
@@ -28,6 +30,7 @@ HEADERS += \
 
 FORMS += \
     cardtypewindow.ui \
+    deposidcahs.ui \
     eventwindow.ui \
     mainwindow.ui \
     userhomepage.ui

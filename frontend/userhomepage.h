@@ -5,6 +5,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <deposidcahs.h>
 #include "myurl.h"
 #include "userdata.h"
 #include <eventwindow.h>
@@ -25,6 +26,7 @@ public:
     const QByteArray &getWebToken() const;
 
     void startSetUp();
+
 private slots:
     void on_lableIdOwner_windowIconChanged(const QIcon &icon);
 
@@ -32,21 +34,30 @@ private slots:
 
     void getCardSlot (QNetworkReply *reply);
     void setEventsInView(QNetworkReply *reply);
-
+   void welcomeSlot(QNetworkReply *reply);
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_3_clicked();
+
 private:
-    EventWindow *objectEvent;
+
     Ui::userHomePage *ui;
     QByteArray webToken;
     QString idCard;
     QString cardInfo;
-
+    EventWindow *objectEvent;
+    DeposidCahs *objectDeposid;
 
     QNetworkAccessManager *gradeManager;
     QNetworkReply *reply;
+    QNetworkReply *replyWelcome;
+
     QByteArray response_data;
+    QByteArray response_balance;
+
 };
 
 #endif // USERHOMEPAGE_H

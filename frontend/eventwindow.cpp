@@ -6,6 +6,10 @@ EventWindow::EventWindow(QWidget *parent) :
     ui(new Ui::EventWindow)
 {
     ui->setupUi(this);
+    setupCheck();
+
+
+
 }
 
 EventWindow::~EventWindow()
@@ -20,6 +24,29 @@ void EventWindow::addEvent(QNetworkReply *reply)
     reply->deleteLater();
     postManager->deleteLater();
 }
+
+void EventWindow::checkInputB(QNetworkReply *reply)
+{
+    response_data=replyBalance->readAll();
+    qDebug()<<"DATA : "+response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+
+    if("true" == response_data){
+        ui->inputPressed->setEnabled(true);
+        ui->errorTxt->setText("");
+
+    }else{
+        ui->inputPressed->setEnabled(false);
+        ui->errorTxt->setText("insufficient funds");
+
+    }
+
+    replyBalance->deleteLater();
+    postManager->deleteLater();
+}
+
+
 
 void EventWindow::on_eventB_clicked()
 {
@@ -44,5 +71,208 @@ void EventWindow::on_eventB_clicked()
 
     reply = postManager->post(request, QJsonDocument(jsonObj).toJson());
 
+}
+
+
+void EventWindow::on_withd20_clicked()
+{
+
+createEvent("-20");
+}
+
+
+void EventWindow::on_withd40_clicked()
+{
+    createEvent("-40");
+
+}
+
+
+void EventWindow::on_withd50_clicked()
+{
+    createEvent("-50");
+
+}
+
+
+void EventWindow::on_withd100_clicked()
+{
+    createEvent("-100");
+
+}
+
+
+void EventWindow::on_inputPressed_clicked()
+{
+    createEvent("-"+ui->inputWith->text());
+
+}
+
+void EventWindow::createEvent(QString num)
+{
+    QDateTime dateTime = dateTime.currentDateTime();
+
+    QJsonObject jsonObj;
+    jsonObj.insert("account_id",userdata::getAccountId());
+    jsonObj.insert("card_id",userdata::getCardId());
+    jsonObj.insert("date",dateTime.toString("yyyy-MM-dd HH:mm:ss"));
+    jsonObj.insert("action","cash withdrawal");
+    jsonObj.insert("sum",num);
+
+
+    QString site_url=MyUrl::getBaseUrl()+"/event";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    //WEBTOKEN ALKU
+    request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
+    //WEBTOKEN LOPPU
+
+    postManager = new QNetworkAccessManager(this);
+    connect(postManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(addEvent(QNetworkReply*)));
+
+    reply = postManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+void EventWindow::setupCheck()
+{
+    qDebug()<<"setupCheck";
+
+    if(userdata::cardType=="credit"){
+        if(userdata::credit_limit + userdata::balance >= 20){
+            setButtonCon("20", true);
+        }
+        else{
+            setButtonCon("20", false);
+
+        }
+       if(userdata::credit_limit + userdata::balance >= 40){
+           setButtonCon("40", true);
+
+        }
+       else
+       {
+           setButtonCon("40", false);
+
+       }
+
+
+
+         if(userdata::credit_limit + userdata::balance >= 50){
+             setButtonCon("50", true);
+
+        }
+        else
+         {
+             setButtonCon("50", false);
+
+         }
+
+
+        if(userdata::credit_limit + userdata::balance >= 100)
+        {
+            setButtonCon("100", true);
+        }
+        else{
+            setButtonCon("100", false);
+
+        }
+
+    }else
+    {
+        if(userdata::balance >= 20){
+            setButtonCon("20", true);
+        }
+        else{
+            setButtonCon("20", false);
+
+        }
+       if(userdata::balance >= 40){
+           setButtonCon("40", true);
+
+        }
+       else
+       {
+           setButtonCon("40", false);
+
+       }
+
+
+       if(userdata::balance >= 50){
+             setButtonCon("50", true);
+        }
+        else
+         {
+             setButtonCon("50", false);
+         }
+
+
+        if( userdata::balance >= 100)
+        {
+            setButtonCon("100", true);
+        }
+        else
+        {
+            setButtonCon("100", false);
+        }
+    }
+
+}
+
+void EventWindow::setButtonCon(QString num, bool active)
+{
+    qDebug()<<num + " " +  QString::number(active);
+    if(num == "20"){
+        ui->withd20->setEnabled(active);
+    }
+    else if(num == "40"){
+        ui->withd40->setEnabled(active);
+
+    }
+    else if(num == "50"){
+        ui->withd50->setEnabled(active);
+
+    }
+    else if(num == "100"){
+        ui->withd100->setEnabled(active);
+
+    }
+
+}
+
+
+
+
+
+void EventWindow::on_inputWith_editingFinished()
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("account_id",userdata::getAccountId());
+    jsonObj.insert("card_type",userdata::getCardType());
+    jsonObj.insert("summa",ui->inputWith->text());
+ qDebug()<<"account_id " + userdata::getAccountId() + " card_type " + userdata::getCardType();
+    QString site_url=MyUrl::getBaseUrl()+"/balance_check";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    //WEBTOKEN ALKU
+    request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
+    //WEBTOKEN LOPPU
+
+    postManager = new QNetworkAccessManager(this);
+    connect(postManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(checkInputB(QNetworkReply*)));
+
+
+    replyBalance = postManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+
+
+
+
+void EventWindow::on_pushButton_5_clicked()
+{
+    this->close();
 }
 

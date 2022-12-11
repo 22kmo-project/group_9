@@ -3,15 +3,16 @@ const bcrypt = require("bcryptjs");
 
 const saltRounds = 10;
 const event = {
-  get: function (callback) {
+  getById: function (id, callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "date",account_id, action, sum, card_id from  event',
+      'select id_event, date_format(date,"%d.%m.%Y %H:%i") as "dateeu",account_id, action, sum, card_id from  event where account_id = ? order by date desc ',
+      [id],
       callback
     );
   },
   getAll: function (callback) {
     return db.query(
-      'select id_event, date_format(date,"%d.%m.%Y") as "dateeu",account_id, action, sum, card_id from event order by date desc;',
+      'select id_event, date_format(date,"%d.%m.%Y %H:%i") as "dateeu",account_id, action, sum, card_id from event order by date desc;',
       callback
     );
   },

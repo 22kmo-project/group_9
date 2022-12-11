@@ -9,7 +9,7 @@
 #include <cardtypewindow.h>
 #include "myurl.h"
 #include "userdata.h"
-
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,22 +22,32 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    QTimer *timer;
+    void CreditWindowCheck();
 private slots:
 
     void on_loginB_clicked();
     void loginSlot (QNetworkReply *reply);
 
 
+    void MyTimerEnd();
+    void CreditChekSlot(QNetworkReply *reply);
+
+
+    void on_cardNumEnter_editingFinished();
 
 private:
     Ui::MainWindow *ui;
-    //userHomePage *objectUserHomePage;
+    userHomePage *objectUserHomePage;
     CardTypeWIndow *objectCardType;
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     QByteArray response_data;
     QString id_card;
     QString pin;
+
+
+    QNetworkAccessManager *gradeManager;
+
 };
 #endif // MAINWINDOW_H

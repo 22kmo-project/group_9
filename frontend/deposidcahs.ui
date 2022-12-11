@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>EventWindow</class>
- <widget class="QDialog" name="EventWindow">
+ <class>DeposidCahs</class>
+ <widget class="QDialog" name="DeposidCahs">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1001</width>
-    <height>594</height>
+    <width>897</width>
+    <height>542</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>100</y>
+     <x>100</x>
+     <y>30</y>
      <width>661</width>
      <height>471</height>
     </rect>
@@ -172,13 +172,13 @@ color: white</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>20</y>
+      <y>30</y>
       <width>341</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ebebeb;&quot;&gt;Withdraw Cash&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ebebeb;&quot;&gt;Deposid Cash&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>

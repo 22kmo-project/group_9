@@ -95,19 +95,20 @@ DELIMITER ;
 
 #get_owner_accounts_info
 DELIMITER //
-CREATE PROCEDURE get_owner_accounts_info(IN _id_owner INT)
+CREATE PROCEDURE get_owner_account_info(IN _id_owner INT)
   BEGIN
-select owner_property.owner_type, account.id_account, account.balance, account.credit_limit
+select owner_property.owner_type, account.id_account, account.balance, account.credit_limit, account.fname, account.lname
  from
  account
  JOIN owner_property
   ON account.id_account=owner_property.account_id
    JOIN owner
   ON owner.id_owner=owner_property.owner_id
-     where id_account = 2;
+     where id_owner = _id_owner;
   END //
 DELIMITER ;
 
+call get_account_info(1)
 
 #create_owner
 DELIMITER //
@@ -156,4 +157,4 @@ select * from event;
 
 call create_event(1,1,"2022-12-7","loh",2500);
 
-select id_event, date as "date",account_id, action, sum, card_id from event order by date desc;
+select id_event, date_format(date,"%d.%m.%Y") as "dateeu",account_id, action, sum, card_id from event order by date desc;

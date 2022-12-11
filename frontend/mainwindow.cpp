@@ -70,18 +70,12 @@ void MainWindow::loginSlot(QNetworkReply *reply)
                 userdata::cardId = id_card;
                 userdata::webToken = "Bearer "+response_data;
 
-                objectCardType = new CardTypeWIndow();
-                objectCardType->show();
-
-                /*objectUserHomePage=new userHomePage(id_card);
-                objectUserHomePage->setWebToken("Bearer "+response_data);
-                objectUserHomePage->show();*/
-
-
                 qDebug()<<"getCardId: " + userdata::getCardId();
                 qDebug()<<"webToken: " + userdata::getWebToken();
 
-                this->close();
+
+
+                CreditWindowCheck();
 
             }
         }
@@ -90,4 +84,82 @@ void MainWindow::loginSlot(QNetworkReply *reply)
 }
 
 
+
+
+void MainWindow::on_cardNumEnter_editingFinished()
+{
+       timer = new QTimer( this );
+       connect( timer, SIGNAL(timeout()), this, SLOT(MyTimerEnd()));
+       timer->start( 10000 ); // 2 seconds single-shot timer
+}
+
+
+void MainWindow::MyTimerEnd()
+{
+    qDebug() << "Timer end";
+    ui->cardNumEnter->clear();
+    ui->pinEnter->clear();
+    ui->errorTxt->setText("10 seconds gone");
+
+}
+
+void MainWindow::CreditWindowCheck()
+{
+
+    qDebug()<<"startSetUp, webToken: " + userdata::getWebToken();
+
+    QString site_url=MyUrl::getBaseUrl()+"/card/"+userdata::cardId;
+        QNetworkRequest request((site_url));
+        //WEBTOKEN ALKU
+        request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
+        //WEBTOKEN LOPPU
+        gradeManager = new QNetworkAccessManager(this);
+
+        connect(gradeManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(CreditChekSlot(QNetworkReply*)));
+
+        reply = gradeManager->get(request);
+
+}
+
+void MainWindow::CreditChekSlot(QNetworkReply *reply)
+{
+
+
+    response_data=reply->readAll();
+    qDebug()<<"DATA : "+response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString book = "";
+    QString account_id = "";
+    qDebug()<<response_data;
+
+    foreach (const QJsonValue &value, json_array) {
+       QJsonObject json_obj = value.toObject();
+       book+=json_obj["card_type"].toString();
+
+       account_id+=QString::number(json_obj["account_id"].toInt());
+       userdata::accountId =QString::number(json_obj["account_id"].toInt());
+       userdata::cardType = book;
+
+
+    }
+
+    if(book=="credit"){
+        objectCardType = new CardTypeWIndow();
+        objectCardType->show();
+    }else{
+        objectUserHomePage=new userHomePage();
+            objectUserHomePage->show();
+    }
+
+qDebug()<<"id Account " + userdata::accountId;
+qDebug()<<"cardType " + userdata::cardType;
+
+
+
+    /*objectUserHomePage=new userHomePage(id_card);
+    objectUserHomePage->setWebToken("Bearer "+response_data);
+    objectUserHomePage->show();*/
+     this->close();
+}
 

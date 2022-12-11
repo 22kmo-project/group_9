@@ -22,6 +22,8 @@ const loginRouter = require("./routes/login");
 const accountRouter = require("./routes/account");
 const cardRouter = require("./routes/card");
 const eventRouter = require("./routes/event");
+const ownerRouter = require("./routes/owner");
+const balanceCheckRouter = require("./routes/balance_check");
 
 app.use("/login", loginRouter); //login is not protected
 
@@ -31,6 +33,8 @@ app.use(authenticateToken);
 app.use("/card", cardRouter);
 app.use("/account", accountRouter);
 app.use("/event", eventRouter);
+app.use("/owner", ownerRouter);
+app.use("/balance_check", balanceCheckRouter);
 
 module.exports = app;
 
