@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const event = require("../models/event_model");
+const event = require("../models/event_model.js");
 
 router.get("/", function (request, response) {
   event.getAll(function (err, dbResult) {

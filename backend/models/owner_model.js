@@ -1,53 +1,47 @@
 const db = require("../database");
+const bcrypt = require("bcryptjs");
 
-const owner = {
+const saltRounds = 10;
+const card = {
+  get: function (callback) {
+    return db.query("call get_all_card_info()", callback);
+  },
   getById: function (id, callback) {
-    db.query(
-      "SELECT * from owner where id_owner=?",
-      [id],
-      function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-        callback(result);
-      }
-    );
-
-    //Siirretäänkö tämä erilliseen modeliin?
-    //return db.query("call get_owner_info(?)", [id], callback);
+    //return db.query("select * from card where id_card=?", [id], callback);
+    return db.query("call get_owner_account_info(?)", [id], callback);
   },
-  getAll: function (callback) {
-    //Select all owners and return the result
-    db.query("select * from owner", function (err, result, fields) {
+  add: function (card, callback) {
+    bcrypt.hash(card.pin, saltRounds, function (err, hash) {
+      console.log(
+        hash +
+          "\n" +
+          card.owner_id +
+          "\n" +
+          card.account_id +
+          "\n" +
+          card.card_type
+      );
 
-      if (err) throw err;
-      console.log(result);
-      console.log("GetAll");
-      callback(result);
+      //return db.query("insert into card ( pin) values(?)", [hash], callback);
+      return db.query(
+        "call create_card(?,?,?,?)",
+        [hash, card.owner_id, card.account_id, card.card_type],
+        callback
+      );
     });
-
-    //return db.query("SELECT * FROM owner", callback);
-  },
-  add: function (owner, callback) {
-    return db.query(
-     "insert into owner (fname,lname,address,phone) values(?,?,?,?)",
-      [owner.fname, owner.lname,owner.address,owner.phone],
-      callback
-       /* return db.query("call create_owner(?,?,?,?,?,?)",
-        [owner.fname,owner.lname,owner.address,owner.phone,owner.owner_type,owner.account_id],
-        callback*/
-    );
   },
   delete: function (id, callback) {
-    //return db.query("delete from owner where id_owner=?", [id], callback);
-    return db.query ("call delete_owner_and_foreign_keys(?)",[id],callback);
-    
+    return db.query("delete from card where id_card=?", [id], callback);
   },
-  update: function (id, owner, callback) {
-    return db.query(
-      "update owner set fname=?,lname=?,address=?,phone=? where id_owner=?",
-      [owner.fname, owner.lname,owner.address,owner.phone, id],
-      callback
-    );
+  update: function (id, card, callback) {
+    bcrypt.hash(card.pin, saltRounds, function (err, hash) {
+      return db.query(
+        "update card set pin=? where id_card=?",
+        [hash, id],
+        callback
+      );
+    });
   },
 };
-module.exports = owner;
+
+module.exports = card;

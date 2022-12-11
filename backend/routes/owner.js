@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const owner = require("../models/owner_model");
+const account = require("../models/owner_model");
 
 router.get("/", function (request, response) {
-  owner.getAll(function (err, dbResult) {
+  account.getAll(function (err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -14,17 +14,17 @@ router.get("/", function (request, response) {
 });
 
 router.get("/:id?", function (request, response) {
-  owner.getById(request.params.id, function (err, dbResult) {
+  account.getById(request.params.id, function (err, dbResult) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult);
+      response.json(dbResult[0]);
     }
   });
 });
 
 router.post("/", function (request, response) {
-  owner.add(request.body, function (err, dbResult) {
+  account.add(request.body, function (err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -34,7 +34,7 @@ router.post("/", function (request, response) {
 });
 
 router.delete("/:id", function (request, response) {
-  owner.delete(request.params.id, function (err, dbResult) {
+  account.delete(request.params.id, function (err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -44,7 +44,7 @@ router.delete("/:id", function (request, response) {
 });
 
 router.put("/:id", function (request, response) {
-  owner.update(request.params.id, request.body, function (err, dbResult) {
+  account.update(request.params.id, request.body, function (err, dbResult) {
     if (err) {
       response.json(err);
     } else {

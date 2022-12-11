@@ -28,19 +28,21 @@ const owner_propertyRouter = require("./routes/owner_property");
 const eventRouter = require("./routes/event");
 const card_creatorRouter = require("./routes/card_creator");
 const owner_creatorRouter = require("./routes/owner_creator");
+const balanceCheckRouter = require("./routes/balance_check");
 
 app.use("/login", loginRouter); //login is not protected
 
 //commint when you have all ready created card
-//app.use(authenticateToken);
+app.use(authenticateToken);
 
 app.use("/card", cardRouter);
 app.use("/account", accountRouter);
 app.use("/balance", balanceRouter);
-app.use("/owner", ownerRouter);
 app.use("/owner_property", owner_propertyRouter);
 app.use("/card_property", card_propertyRouter);
 app.use("/event", eventRouter);
+app.use("/owner", ownerRouter);
+app.use("/balance_check", balanceCheckRouter);
 app.use("/card_creator", card_creatorRouter);
 app.use("/owner_creator", owner_creatorRouter);
 
