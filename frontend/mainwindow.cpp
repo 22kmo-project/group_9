@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "welcomewindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -97,9 +98,17 @@ void MainWindow::on_cardNumEnter_editingFinished()
 void MainWindow::MyTimerEnd()
 {
     qDebug() << "Timer end";
-    ui->cardNumEnter->clear();
+    /*ui->cardNumEnter->clear();
     ui->pinEnter->clear();
-    ui->errorTxt->setText("10 seconds gone");
+    ui->errorTxt->setText("10 seconds gone");*/
+
+    if(this->isVisible())
+    {
+        welcomeWindow *w = new welcomeWindow;
+        w->show();
+        this->close();
+    }
+
 
 }
 

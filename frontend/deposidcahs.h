@@ -23,6 +23,8 @@ public:
     ~DeposidCahs();
     void createEvent(QString num);
     //void SetUserPage(userHomePage onj);
+    QTimer *timer;
+
 private slots:
     void addEvent (QNetworkReply *reply);
 
@@ -39,6 +41,8 @@ private slots:
     void on_inputWith_editingFinished();
 
     void on_inputPressed_clicked();
+
+    void TimerEnd();
 
 private:
     Ui::DeposidCahs *ui;

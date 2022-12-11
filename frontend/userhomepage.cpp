@@ -1,5 +1,7 @@
 #include "userhomepage.h"
 #include "ui_userhomepage.h"
+#include "welcomeWindow.h"
+#include "alleventswindow.h"
 
 userHomePage::userHomePage(QWidget *parent) :
     QDialog(parent),
@@ -9,6 +11,10 @@ userHomePage::userHomePage(QWidget *parent) :
     ui->lableIdOwner->setText("Card Id: " + userdata::getCardId());
     idCard=userdata::getCardId();
     startSetUp();
+
+    timer = new QTimer( this );
+    connect( timer, SIGNAL(timeout()), this, SLOT(TimerEnd()));
+    timer->start( 30000 ); // 2 seconds single-shot timer
 
 }
 
@@ -38,7 +44,17 @@ ui->bankView->clear();
     QByteArray response_data=reply->readAll();
       QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
       QJsonArray json_array = json_doc.array();
-      foreach (const QJsonValue &value, json_array) {
+      for(int i =0 ; i <10;i++){
+          QJsonObject json_obj = json_array[i].toObject();
+           QString grade =  "";
+          if(json_obj["sum"].toInt()>0){
+               grade=json_obj["dateeu"].toString()+" | action: " + json_obj["action"].toString()+ " | sum: +" +QString::number(json_obj["sum"].toInt())+" | card id: "+
+                                QString::number(json_obj["card_id"].toInt())+"\r\n";
+          }else{
+               grade=json_obj["dateeu"].toString()+" | action: " + json_obj["action"].toString()+ " | sum: " +QString::number(json_obj["sum"].toInt())+" | card id: "+
+                                QString::number(json_obj["card_id"].toInt())+"\r\n";
+      }
+      /*foreach (const QJsonValue &value, json_array) {
           QJsonObject json_obj = value.toObject();
            QString grade =  "";
           if(json_obj["sum"].toInt()>0){
@@ -48,7 +64,7 @@ ui->bankView->clear();
                grade=json_obj["dateeu"].toString()+" | action: " + json_obj["action"].toString()+ " | sum: " +QString::number(json_obj["sum"].toInt())+" | card id: "+
                                 QString::number(json_obj["card_id"].toInt())+"\r\n";
           }
-
+*/
 
           ui->bankView->addItem(grade);
 
@@ -187,6 +203,7 @@ void userHomePage::on_pushButton_2_clicked()
 {
     objectDeposid = new DeposidCahs();
     objectDeposid->show();
+    this->close();
 }
 
 
@@ -194,6 +211,8 @@ void userHomePage::on_pushButton_clicked()
 {
     objectEvent = new EventWindow();
     objectEvent->show();
+    this->close();
+
 }
 
 
@@ -201,5 +220,49 @@ void userHomePage::on_pushButton_3_clicked()
 {
     startSetUp();
 
+}
+
+
+void userHomePage::on_sinoutB_clicked()
+{
+    userdata::cardId="";
+    userdata::cardType="";
+    userdata::accountId="";
+    userdata::balance=0;
+    userdata::credit_limit=0;
+    userdata::webToken="";
+
+
+
+    welcomeWindow *w = new welcomeWindow;
+    w->show();
+    this->close();
+}
+
+void userHomePage::TimerEnd()
+{
+    if(this->isVisible())
+    {    userdata::cardId="";
+        userdata::cardType="";
+        userdata::accountId="";
+        userdata::balance=0;
+        userdata::credit_limit=0;
+        userdata::webToken="";
+
+
+
+        welcomeWindow *w = new welcomeWindow;
+        w->show();
+        this->close();}
+
+}
+
+
+
+void userHomePage::on_showAllB_clicked()
+{
+    allEventsWindow *w = new allEventsWindow();
+    w->show();
+    this->close();
 }
 

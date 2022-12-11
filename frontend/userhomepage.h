@@ -26,6 +26,7 @@ public:
     const QByteArray &getWebToken() const;
 
     void startSetUp();
+    QTimer *timer;
 
 private slots:
     void on_lableIdOwner_windowIconChanged(const QIcon &icon);
@@ -41,6 +42,11 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_sinoutB_clicked();
+    void TimerEnd();
+
+    void on_showAllB_clicked();
 
 private:
 

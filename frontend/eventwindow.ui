@@ -55,7 +55,7 @@
         <string notr="true">font: 18pt &quot;Segoe UI&quot;;
 background-color: rgb(6, 90, 96);
 
-color: white</string>
+</string>
        </property>
        <property name="text">
         <string>20</string>
@@ -68,7 +68,7 @@ color: white</string>
         <string notr="true">font: 18pt &quot;Segoe UI&quot;;
 background-color: rgb(6, 90, 96);
 
-color: white</string>
+</string>
        </property>
        <property name="text">
         <string>50</string>
@@ -81,7 +81,7 @@ color: white</string>
         <string notr="true">font: 18pt &quot;Segoe UI&quot;;
 background-color: rgb(6, 90, 96);
 
-color: white</string>
+</string>
        </property>
        <property name="text">
         <string>40</string>
@@ -94,7 +94,7 @@ color: white</string>
         <string notr="true">font: 18pt &quot;Segoe UI&quot;;
 background-color: rgb(6, 90, 96);
 
-color: white</string>
+</string>
        </property>
        <property name="text">
         <string>100</string>
@@ -140,13 +140,16 @@ color: white</string>
      </item>
      <item>
       <widget class="QPushButton" name="inputPressed">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(6, 90, 96);
 
-color: white</string>
+</string>
        </property>
        <property name="text">
-        <string>Withdrawal</string>
+        <string>Withdraw</string>
        </property>
       </widget>
      </item>

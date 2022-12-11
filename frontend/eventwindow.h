@@ -19,6 +19,7 @@ class EventWindow : public QDialog
 public:
     explicit EventWindow(QWidget *parent = nullptr);
     ~EventWindow();
+    QTimer *timer;
 
     void setupCheck();
     void setButtonCon(QString num, bool active);
@@ -47,11 +48,19 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_inputWith_textEdited(const QString &arg1);
+
+    void eventUpdate(QString input);
+
+    void TimerEnd();
+
 private:
     Ui::EventWindow *ui;
     QNetworkAccessManager *postManager;
     QNetworkReply *reply;
     QByteArray response_data;
+
+    QNetworkAccessManager *postBalanceManager;
 
     QNetworkReply *replyBalance;
     QByteArray response_data_balance;

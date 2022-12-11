@@ -1,5 +1,6 @@
 #include "eventwindow.h"
 #include "ui_eventwindow.h"
+#include "welcomeWindow.h"
 
 EventWindow::EventWindow(QWidget *parent) :
     QDialog(parent),
@@ -7,7 +8,9 @@ EventWindow::EventWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupCheck();
-
+    timer = new QTimer( this );
+    connect( timer, SIGNAL(timeout()), this, SLOT(TimerEnd()));
+    timer->start( 30000 ); // 2 seconds single-shot timer
 
 
 }
@@ -23,6 +26,12 @@ void EventWindow::addEvent(QNetworkReply *reply)
     qDebug()<<response_data;
     reply->deleteLater();
     postManager->deleteLater();
+
+    if(ui->inputWith->text()!=""){
+        eventUpdate(ui->inputWith->text());
+
+    }
+
 }
 
 void EventWindow::checkInputB(QNetworkReply *reply)
@@ -43,7 +52,7 @@ void EventWindow::checkInputB(QNetworkReply *reply)
     }
 
     replyBalance->deleteLater();
-    postManager->deleteLater();
+    postBalanceManager->deleteLater();
 }
 
 
@@ -132,6 +141,10 @@ void EventWindow::createEvent(QString num)
     connect(postManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(addEvent(QNetworkReply*)));
 
     reply = postManager->post(request, QJsonDocument(jsonObj).toJson());
+
+
+    setupCheck();
+
 }
 
 void EventWindow::setupCheck()
@@ -246,24 +259,7 @@ void EventWindow::setButtonCon(QString num, bool active)
 
 void EventWindow::on_inputWith_editingFinished()
 {
-    QJsonObject jsonObj;
-    jsonObj.insert("account_id",userdata::getAccountId());
-    jsonObj.insert("card_type",userdata::getCardType());
-    jsonObj.insert("summa",ui->inputWith->text());
- qDebug()<<"account_id " + userdata::getAccountId() + " card_type " + userdata::getCardType();
-    QString site_url=MyUrl::getBaseUrl()+"/balance_check";
-    QNetworkRequest request((site_url));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    //WEBTOKEN ALKU
-    request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
-    //WEBTOKEN LOPPU
-
-    postManager = new QNetworkAccessManager(this);
-    connect(postManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(checkInputB(QNetworkReply*)));
-
-
-    replyBalance = postManager->post(request, QJsonDocument(jsonObj).toJson());
 }
 
 
@@ -273,6 +269,56 @@ void EventWindow::on_inputWith_editingFinished()
 
 void EventWindow::on_pushButton_5_clicked()
 {
+    userHomePage *uspag = new userHomePage();
+    uspag->show();
     this->close();
+}
+
+
+void EventWindow::on_inputWith_textEdited(const QString &arg1)
+{
+eventUpdate(arg1);
+}
+
+void EventWindow::eventUpdate(QString input){
+    QJsonObject jsonObj;
+    jsonObj.insert("account_id",userdata::getAccountId());
+    jsonObj.insert("card_type",userdata::getCardType());
+    //jsonObj.insert("summa",ui->inputWith->text());
+    jsonObj.insert("summa",input);
+
+ qDebug()<<"account_id " + userdata::getAccountId() + " card_type " + userdata::getCardType();
+    QString site_url=MyUrl::getBaseUrl()+"/balance_check";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    //WEBTOKEN ALKU
+    request.setRawHeader(QByteArray("Authorization"),(userdata::getWebToken()));
+    //WEBTOKEN LOPPU
+
+    postBalanceManager = new QNetworkAccessManager(this);
+    connect(postBalanceManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(checkInputB(QNetworkReply*)));
+
+
+    replyBalance = postBalanceManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+void EventWindow::TimerEnd()
+{
+    if(this->isVisible())
+    {    userdata::cardId="";
+        userdata::cardType="";
+        userdata::accountId="";
+        userdata::balance=0;
+        userdata::credit_limit=0;
+        userdata::webToken="";
+
+
+
+        welcomeWindow *w = new welcomeWindow;
+        w->show();
+        this->close();
+    }
+
 }
 

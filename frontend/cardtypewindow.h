@@ -16,11 +16,14 @@ class CardTypeWIndow : public QDialog
 public:
     explicit CardTypeWIndow(QWidget *parent = nullptr);
     ~CardTypeWIndow();
+    QTimer *timer;
+
 
 private slots:
     void on_debitB_clicked();
 
     void on_creditB_clicked();
+    void TimerEnd();
 
 private:
     Ui::CardTypeWIndow *ui;

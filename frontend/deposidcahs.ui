@@ -146,7 +146,7 @@ color: white</string>
 color: white</string>
        </property>
        <property name="text">
-        <string>Withdrawal</string>
+        <string>Deposit</string>
        </property>
       </widget>
      </item>
@@ -178,7 +178,7 @@ color: white</string>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ebebeb;&quot;&gt;Deposid Cash&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ebebeb;&quot;&gt;Deposit Cash&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>

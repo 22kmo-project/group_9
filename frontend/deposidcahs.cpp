@@ -1,11 +1,15 @@
 #include "deposidcahs.h"
 #include "ui_deposidcahs.h"
+#include "welcomeWindow.h"
 
 DeposidCahs::DeposidCahs(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DeposidCahs)
 {
     ui->setupUi(this);
+    timer = new QTimer( this );
+    connect( timer, SIGNAL(timeout()), this, SLOT(TimerEnd()));
+    timer->start( 30000 ); // 2 seconds single-shot timer
 }
 
 DeposidCahs::~DeposidCahs()
@@ -42,6 +46,8 @@ void DeposidCahs::on_withd100_clicked()
 
 void DeposidCahs::on_pushButton_5_clicked()
 {
+    userHomePage *uspag = new userHomePage();
+    uspag->show();
     this->close();
 
 }
@@ -96,5 +102,23 @@ void DeposidCahs::addEvent(QNetworkReply *reply)
     reply->deleteLater();
     postManager->deleteLater();
     //objHomePage->startSetUp();
+}
+
+void DeposidCahs::TimerEnd()
+{
+    if(this->isVisible())
+    {    userdata::cardId="";
+        userdata::cardType="";
+        userdata::accountId="";
+        userdata::balance=0;
+        userdata::credit_limit=0;
+        userdata::webToken="";
+
+
+
+        welcomeWindow *w = new welcomeWindow;
+        w->show();
+        this->close();}
+
 }
 

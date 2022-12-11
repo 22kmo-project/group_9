@@ -34,6 +34,7 @@ private slots:
     void CreditChekSlot(QNetworkReply *reply);
 
 
+
     void on_cardNumEnter_editingFinished();
 
 private:
