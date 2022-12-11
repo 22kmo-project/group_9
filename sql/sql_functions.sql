@@ -26,6 +26,8 @@ owner_property.owner_type, owner.fname, owner.lname, owner.address,
   ON card_property.card_id=card.id_card
    JOIN owner
   ON owner.id_owner=card.owner_id
+       JOIN owner_property
+     ON owner_property.owner_id = owner.id_owner
    JOIN account
   ON card_property.account_id=account.id_account
      where id_card = _card_id;
